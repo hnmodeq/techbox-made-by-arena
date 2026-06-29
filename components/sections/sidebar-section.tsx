@@ -2,9 +2,9 @@
 
 import * as React from "react";
 import { SidebarMainProps } from "@/components/sidebar/sidebar.types";
-import { desktopStore, mobileStore } from "@/components/sidebar/sidebar.store";
-import { themeStore } from "@/components/sidebar/theme.store";
-import SidebarShell from "@/components/sidebar/SidebarShell";
+import { desktopStore, mobileStore } from "@/features/layout/sidebar.store";
+import { themeStore } from "@/features/layout/theme.store";
+import SidebarShell from "@/features/layout/SidebarShell";
 
 export default function SidebarMain({ onMobileOpenChange }: SidebarMainProps) {
   const desktopOpen = React.useSyncExternalStore(

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { kalameh } from "@/lib/fonts";
-import { LayoutShell } from "@/components/layout-shell";
+import { LayoutShell } from "@/components/layout/LayoutShell";
 
 export const metadata: Metadata = {
   title: "رسانه تکنولوژی تکباکس",

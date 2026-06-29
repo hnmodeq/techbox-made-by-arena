@@ -4,6 +4,7 @@ import * as React from "react";
 import SidebarMain from "@/components/sections/sidebar-section";
 import FooterSection from "@/components/sections/footer-section";
 import { CartProvider } from "@/components/shop/cart-context";
+import Chatbot from "@/components/chatbot";
 
 export function LayoutShell({ children }: { children: React.ReactNode }) {
   return (
@@ -18,6 +19,7 @@ export function LayoutShell({ children }: { children: React.ReactNode }) {
           <FooterSection />
         </main>
       </div>
+      <Chatbot />
     </div>
     </CartProvider>
   );

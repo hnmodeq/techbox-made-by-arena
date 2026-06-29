@@ -1,3 +1,3 @@
-import ForumList from "@/components/forum-list";
+import ForumList from "@/features/forum/components/ForumList";
 export const metadata = { title: "انجمن | تکباکس" };
-export default function ForumPage(){ return <ForumList /> }
+export default function ForumPage(){ return <ForumList />; }

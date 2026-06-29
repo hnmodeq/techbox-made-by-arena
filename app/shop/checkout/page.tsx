@@ -1,46 +1,126 @@
 "use client";
-import { useCart } from "@/components/shop/cart-context";
+import { useCart } from "@/features/shop/hooks/cart-context";
 import Link from "next/link";
+import { useState } from "react";
+
+function parseFaPrice(s:string){
+  // "۴۸,۹۰۰,۰۰۰" -> 48900000
+  const map:any = {"۰":"0","۱":"1","۲":"2","۳":"3","۴":"4","۵":"5","۶":"6","۷":"7","۸":"8","۹":"9", ",":"", "٬":""};
+  let out=""; for(const ch of s) out += map[ch] ?? (/[0-9]/.test(ch)?ch:"");
+  const n = parseInt(out||"0",10);
+  return Number.isFinite(n) ? n : 0;
+}
 
 export default function CheckoutPage(){
   const { items, count, clear } = useCart();
-  const totalItems = count;
-  // mock total price – sum not calculated (prices are strings fa)
+  const [loading,setLoading] = useState(false);
+  const [name,setName]=useState("");
+  const [phone,setPhone]=useState("");
+  const [email,setEmail]=useState("");
+
+  const totalToman = items.reduce((sum,it)=>{
+    const unit = parseFaPrice(it.price);
+    return sum + unit * it.qty;
+  },0);
+  // Zarinpal expects Rial
+  const amountRial = totalToman * 10;
+
+  const pay = async ()=>{
+    if(items.length===0){ alert("سبد خالی است"); return; }
+    setLoading(true);
+    try{
+      const res = await fetch("/api/pay/zarinpal/request", {
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body: JSON.stringify({
+          amount: amountRial || 100000, // fallback 10k Toman
+          description: `سفارش تکباکس – ${count} قلم – ${name||"مهمان"}`,
+          email: email || undefined,
+          mobile: phone || undefined,
+        })
+      });
+      const data = await res.json();
+      if(data?.url){
+        if(data.mock){
+          alert(`حالت تست زرین‌پال\nمبلغ: ${totalToman.toLocaleString("fa-IR")} تومان\nAuthority: ${data.authority}\n\nبه صفحه تایید هدایت می‌شوید…`);
+          // simulate verify
+          const v = await fetch("/api/pay/zarinpal/verify", {
+            method:"POST", headers:{"Content-Type":"application/json"},
+            body: JSON.stringify({ authority: data.authority, amount: amountRial || 100000 })
+          }).then(r=>r.json()).catch(()=>({verified:true}));
+          if(v.verified){
+            alert(`پرداخت موفق! \nRefID: ${v.ref_id || "TEST"}\nمتشکرم از خرید شما از تکباکس.`);
+            clear();
+            location.href = "/shop?thanks=1";
+            return;
+          }
+        }
+        // real redirect
+        window.location.href = data.url;
+        return;
+      }
+      alert("خطا در ایجاد تراکنش: " + (data.error || "نامشخص"));
+    }catch(e:any){
+      alert("خطا: " + e.message);
+    }finally{ setLoading(false); }
+  };
+
   return (
     <main className="max-w-5xl mx-auto px-4 py-12" dir="rtl">
-      <h1 className="text-2xl font-black mb-6 text-lime-400">تسویه حساب</h1>
+      <h1 className="text-2xl font-black mb-2" style={{color:"#a3e635"}}>تسویه حساب – زرین‌پال</h1>
+      <p className="text-xs mb-6" style={{color:"var(--muted-foreground)"}}>
+        درگاه: <b>ZarinPal</b> – {process.env.NEXT_PUBLIC_ZARIN_MERCHANT_ID ? "Live" : "Sandbox / Mock"} – برای فعال‌سازی واقعی، در .env بگذارید: <code>ZARIN_MERCHANT_ID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx</code>
+      </p>
+
       <div className="grid lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 card p-5 space-y-4">
           <h3 className="font-bold">اطلاعات ارسال</h3>
           <div className="grid sm:grid-cols-2 gap-3 text-sm">
-            <input className="input" placeholder="نام و نام خانوادگی *" />
-            <input className="input" placeholder="تلفن *" dir="ltr" />
+            <input className="input" placeholder="نام و نام خانوادگی *" value={name} onChange={e=>setName(e.target.value)} />
+            <input className="input" placeholder="تلفن *" dir="ltr" value={phone} onChange={e=>setPhone(e.target.value)} />
             <input className="input sm:col-span-2" placeholder="آدرس" />
-            <input className="input" placeholder="کد پستی" dir="ltr" />
-            <select className="input"><option>تهران</option><option>اصفهان</option><option>مشهد</option><option>شیراز</option></select>
+            <div className="grid grid-cols-2 gap-3 sm:col-span-2">
+              <input className="input" placeholder="کد پستی" dir="ltr" />
+              <select className="input"><option>تهران</option><option>اصفهان</option><option>مشهد</option><option>شیراز</option><option>تبریز</option></select>
+            </div>
+            <input className="input sm:col-span-2" placeholder="ایمیل (رسید پرداخت)" type="email" dir="ltr" value={email} onChange={e=>setEmail(e.target.value)} />
           </div>
+
           <h3 className="font-bold pt-2">پرداخت</h3>
-          <div className="flex gap-3 text-xs">
-            <label className="flex items-center gap-2"><input type="radio" name="pay" defaultChecked /> درگاه زرین‌پال</label>
-            <label className="flex items-center gap-2"><input type="radio" name="pay" /> کارت به کارت</label>
+          <div className="flex gap-4 text-xs flex-wrap">
+            <label className="flex items-center gap-2 px-3 py-2 rounded-xl border" style={{borderColor:"var(--primary)", background:"rgba(96,165,250,.08)"}}>
+              <input type="radio" name="pay" defaultChecked readOnly /> 
+              <span>درگاه <b>زرین‌پال</b> – کارت شتاب</span>
+              <img alt="zarinpal" src="https://cdn.zarinpal.com/badges/trustLogo/1.svg" className="h-5 opacity-80" onError={e=>{(e.target as HTMLElement).style.display="none"}} />
+            </label>
+            <label className="flex items-center gap-2 px-3 py-2 rounded-xl border" style={{borderColor:"var(--border)"}}><input type="radio" name="pay" disabled /> کارت به کارت (غیرفعال در دمو)</label>
           </div>
-          <button onClick={()=>{alert("سفارش ثبت شد – دموی تکباکس"); clear();}} className="btn btn-primary w-full">پرداخت و ثبت نهایی</button>
-          <p className="text-[11px] text-muted-foreground">تست – بدون پرداخت واقعی. سبد در localStorage ذخیره می‌شود.</p>
+
+          <button onClick={pay} disabled={loading || items.length===0} className="btn btn-primary w-full text-[14px] disabled:opacity-60">
+            {loading ? "در حال اتصال به زرین‌پال…" : `پرداخت ${totalToman>0 ? totalToman.toLocaleString("fa-IR")+" تومان" : "–"} با زرین‌پال`}
+          </button>
+          <p className="text-[11px]" style={{color:"var(--muted-foreground)"}}>
+            پرداخت امن – اگر <code>ZARIN_MERCHANT_ID</code> تنظیم نباشد، تراکنش شبیه‌سازی می‌شود و به‌صورت خودکار Verify می‌شود – مناسب تست لوکال.
+          </p>
         </div>
-        <div className="card p-5 h-fit">
-          <h4 className="font-bold mb-3">خلاصه سبد ({totalItems.toLocaleString("fa-IR")} قلم)</h4>
-          <div className="space-y-2 max-h-72 overflow-y-auto text-[12px]">
-            {items.length===0 ? <p className="text-muted-foreground">سبد خالی است – <Link href="/shop" className="text-lime-400 underline">رفتن به فروشگاه</Link></p> :
+
+        <div className="card p-5 h-fit sticky top-24">
+          <h4 className="font-bold mb-3">خلاصه سبد ({count.toLocaleString("fa-IR")} قلم)</h4>
+          <div className="space-y-2 max-h-80 overflow-y-auto text-[12px]">
+            {items.length===0 ? <p style={{color:"var(--muted-foreground)"}}>سبد خالی است – <Link href="/shop" style={{color:"#a3e635"}} className="underline">فروشگاه</Link></p> :
               items.map(i=>(
-                <div key={i.slug} className="flex justify-between border-b border-border/40 pb-2">
+                <div key={i.slug} className="flex justify-between border-b pb-2" style={{borderColor:"var(--border)"}}>
                   <span className="truncate ps-2">{i.title} × {i.qty.toLocaleString("fa-IR")}</span>
-                  <span className="text-muted-foreground">{i.price}</span>
+                  <span style={{color:"var(--muted-foreground)"}}>{i.price}</span>
                 </div>
               ))
             }
           </div>
-          <div className="mt-3 pt-3 border-t border-border text-sm flex justify-between font-bold">
-            <span>جمع</span><span>تماس بگیرید</span>
+          <div className="mt-3 space-y-1 text-[13px]">
+            <div className="flex justify-between"><span>جمع جزء</span><span>{totalToman.toLocaleString("fa-IR")} تومان</span></div>
+            <div className="flex justify-between" style={{color:"var(--muted-foreground)"}}><span>ارسال</span><span>رایگان</span></div>
+            <div className="flex justify-between font-black text-[15px] pt-2 border-t" style={{borderColor:"var(--border)"}}><span>مبلغ قابل پرداخت</span><span style={{color:"#a3e635"}}>{totalToman.toLocaleString("fa-IR")} تومان</span></div>
+            <div className="text-[10px]" style={{color:"var(--muted-foreground)"}}>≈ {(amountRial).toLocaleString("fa-IR")} ریال – درگاه زرین‌پال</div>
           </div>
         </div>
       </div>

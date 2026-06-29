@@ -10,12 +10,16 @@ techbox-made-by-arena
 │   │   └── page.tsx
 │   ├── account
 │   │   └── page.tsx
+│   ├── actions
+│   │   └── comments.ts
 │   ├── admin
 │   │   ├── login
 │   │   │   └── page.tsx
 │   │   ├── posts
 │   │   │   ├── new
 │   │   │   │   └── page.tsx
+│   │   │   └── page.tsx
+│   │   ├── roles
 │   │   │   └── page.tsx
 │   │   └── page.tsx
 │   ├── api
@@ -26,12 +30,20 @@ techbox-made-by-arena
 │   │   │   │   └── route.ts
 │   │   │   └── me
 │   │   │       └── route.ts
+│   │   ├── chat
+│   │   │   └── route.ts
 │   │   ├── comments
 │   │   │   ├── vote
 │   │   │   │   └── route.ts
 │   │   │   └── route.ts
 │   │   ├── like
 │   │   │   └── route.ts
+│   │   ├── pay
+│   │   │   └── zarinpal
+│   │   │       ├── request
+│   │   │       │   └── route.ts
+│   │   │       └── verify
+│   │   │           └── route.ts
 │   │   └── posts
 │   │       └── route.ts
 │   ├── blog
@@ -86,6 +98,12 @@ techbox-made-by-arena
 │   ├── layout.tsx
 │   └── page.tsx
 ├── components
+│   ├── common
+│   │   ├── BentoCard.tsx
+│   │   └── ContentCard.tsx
+│   ├── layout
+│   │   ├── Footer.tsx
+│   │   └── LayoutShell.tsx
 │   ├── media
 │   │   └── video-player.tsx
 │   ├── sections
@@ -109,8 +127,11 @@ techbox-made-by-arena
 │   ├── tools
 │   │   ├── raid-calculator.tsx
 │   │   └── subnet-calculator.tsx
+│   ├── ui
+│   │   └── LikeButton.tsx
 │   ├── bento-card.tsx
 │   ├── blog-grid.tsx
+│   ├── chatbot.tsx
 │   ├── comment-section.tsx
 │   ├── content-card.tsx
 │   ├── content-detail.tsx
@@ -126,6 +147,9 @@ techbox-made-by-arena
 │   ├── shop-grid.tsx
 │   ├── suggestion-grid.tsx
 │   └── tools-grid.tsx
+├── config
+│   ├── module-colors.ts
+│   └── modules.config.ts
 ├── data
 │   ├── blog.json
 │   ├── comments.json
@@ -138,6 +162,72 @@ techbox-made-by-arena
 │   ├── shop.json
 │   ├── tools.json
 │   └── users.json
+├── deprecated
+│   └── BlogSection.legacy.tsx
+├── features
+│   ├── blog
+│   │   └── components
+│   │       └── BlogGrid.tsx
+│   ├── chat
+│   │   └── components
+│   │       └── Chatbot.tsx
+│   ├── comment
+│   │   └── components
+│   │       └── CommentSection.tsx
+│   ├── content
+│   │   └── components
+│   │       ├── ContentDetail.tsx
+│   │       ├── ModuleList.tsx
+│   │       └── SuggestionGrid.tsx
+│   ├── download
+│   │   └── components
+│   │       ├── DownloadDetail.tsx
+│   │       └── DownloadTable.tsx
+│   ├── forum
+│   │   └── components
+│   │       └── ForumList.tsx
+│   ├── home
+│   │   └── components
+│   │       ├── HeroSection.tsx
+│   │       └── HomeModulesSection.tsx
+│   ├── layout
+│   │   ├── components
+│   │   │   ├── SidebarMain.tsx
+│   │   │   └── SidebarShell.tsx
+│   │   ├── sidebar.config.ts
+│   │   ├── sidebar.store.ts
+│   │   ├── sidebar.types.ts
+│   │   ├── SidebarContent.tsx
+│   │   ├── SidebarShell.tsx
+│   │   ├── SidebarTooltip.tsx
+│   │   ├── theme.store.ts
+│   │   └── useFabTop.ts
+│   ├── media
+│   │   └── components
+│   │       ├── MediaGallery.tsx
+│   │       └── VideoPlayer.tsx
+│   ├── news
+│   │   └── components
+│   │       ├── NewsList.tsx
+│   │       └── NewsTicker.tsx
+│   ├── review
+│   │   └── components
+│   │       └── ReviewGrid.tsx
+│   ├── shop
+│   │   ├── components
+│   │   │   └── ShopGrid.tsx
+│   │   ├── hooks
+│   │   │   └── cart-context.tsx
+│   │   └── cart-context.tsx
+│   └── tools
+│       ├── components
+│       │   ├── RaidCalculator.tsx
+│       │   ├── SubnetCalculator.tsx
+│       │   └── ToolsGrid.tsx
+│       ├── raid-calculator.tsx
+│       └── subnet-calculator.tsx
+├── hooks
+│   └── useFabTop.ts
 ├── lib
 │   ├── auth-server.ts
 │   ├── auth.ts
@@ -146,6 +236,8 @@ techbox-made-by-arena
 │   ├── fonts.ts
 │   ├── module-colors.ts
 │   ├── modules.ts
+│   ├── sidebar.store.ts
+│   ├── theme.store.ts
 │   └── utils.ts
 ├── prisma
 │   ├── schema.prisma
@@ -175,10 +267,16 @@ techbox-made-by-arena
 │   │   ├── KalamehWebFaNum-SemiBold.woff2
 │   │   └── KalamehWebFaNum-Thin.woff2
 │   └── logo.png
+├── readme
+│   └── transfertree.md
 ├── scripts
 │   ├── transferdata.cjs
 │   └── transfertree.cjs
-├── .env
+├── styles
+│   └── globals.css
+├── uploads
+│   └── logo.png
+├── DOCS_STRUCTURE.md
 ├── next-env.d.ts
 ├── next.config.mjs
 ├── package-lock.json
