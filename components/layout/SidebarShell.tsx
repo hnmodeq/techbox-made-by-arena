@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useRef, useState } from "react";
-import SidebarContent from "@/components/layout/sidebar/SidebarContent";
+import SidebarContent from "@/components/layout/SidebarContent";
 import { sidebarBase } from "@/config/sidebar.config";
 import { SidebarShellProps } from "@/types/sidebar.types";
 import { useFabTop, saveFabTop } from "@/hooks/useFabTop";

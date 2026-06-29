@@ -1,5 +1,5 @@
 import { getBySlug, getModuleItems } from "@/lib/content";
-import ContentDetail from "@/components/common/ContentDetail";
+import ContentDetail from "@/features/content/components/ContentDetail";
 import { notFound } from "next/navigation";
 
 export async function generateStaticParams() {

@@ -1,7 +1,7 @@
 "use client";
 import * as React from "react";
 import { useActionState, useEffect, useOptimistic, useTransition, useState } from "react";
-import { getCommentsAction, createCommentAction, voteCommentAction } from "@/app/actions/comments";
+import { getCommentsAction, createCommentAction, voteCommentAction } from "@/features/comment/actions/comments";
 import { CommentVote } from "@/components/ui/LikeButton";
 
 type CommentNode = any;

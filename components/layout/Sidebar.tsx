@@ -1,10 +1,10 @@
 "use client";
 
 import * as React from "react";
-import { SidebarMainProps } from "@/features/layout/sidebar.types";
+import { SidebarMainProps } from "@/types/sidebar.types";
 import { desktopStore, mobileStore } from "@/stores/sidebar.store";
 import { themeStore } from "@/stores/theme.store";
-import SidebarShell from "@/features/layout/SidebarShell";
+import SidebarShell from "@/components/layout/SidebarShell";
 
 export default function SidebarMain({ onMobileOpenChange }: SidebarMainProps) {
   const desktopOpen = React.useSyncExternalStore(

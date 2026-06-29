@@ -1,7 +1,7 @@
-import BentoCard from "@/components/common/BentoCard";
+import BentoCard from "@/features/content/components/BentoCard";
 import { modules } from "@/config/modules.config";
 import { getLatest, moduleMeta, type ModuleSlug } from "@/lib/content";
-import { ContentFeedList } from "@/components/common/ContentCard";
+import { ContentFeedList } from "@/features/content/components/ContentCard";
 
 const feedVariant: Record<ModuleSlug, "image"|"video"|"forum"|"product"|"download"|"review"|"compact"> = {
   blog: "image",

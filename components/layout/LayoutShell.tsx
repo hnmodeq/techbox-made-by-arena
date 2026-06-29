@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import SidebarMain from "@/features/layout/components/SidebarMain";
+import SidebarMain from "@/components/layout/Sidebar";
 import FooterSection from "@/components/layout/Footer";
 import { CartProvider } from "@/providers/cart.provider";
 import Chatbot from "@/features/chat/components/Chatbot";

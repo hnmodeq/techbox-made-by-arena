@@ -12,9 +12,9 @@ import {
   linkBase,
   linkInactive,
   isActive,
-} from "@/features/layout/sidebar.config";
-import { SidebarContentProps } from "@/features/layout/sidebar.types";
-import SidebarTooltip from "@/components/layout/sidebar/SidebarTooltip";
+} from "@/config/sidebar.config";
+import { SidebarContentProps } from "@/types/sidebar.types";
+import SidebarTooltip from "@/components/layout/SidebarTooltip";
 import { useEffect, useState, useMemo } from "react";
 import { getCurrentUserClient, logout, type AppUser } from "@/lib/auth";
 import { useCart } from "@/providers/cart.provider";

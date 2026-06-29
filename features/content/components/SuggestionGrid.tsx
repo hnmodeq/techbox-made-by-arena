@@ -1,5 +1,5 @@
 import { getRelated, type ContentItem } from "@/lib/content";
-import { ContentCard } from "@/components/common/ContentCard";
+import { ContentCard } from "@/features/content/components/ContentCard";
 
 export default function SuggestionGrid({ current }: { current: ContentItem }) {
   const related = getRelated(current, 6);

@@ -13,7 +13,7 @@
 
   "files.exclude": {
     "**/.git": true,
-    "**/.env": true,
+    "**/.env": false,
     "**/.env.local": true,
     "**/.gitattributes": true,
     "**/.gitignore": true,
@@ -36,5 +36,6 @@
     "**/pnpm-debug.log": true,
     "**/tsconfig.tsbuildinfo": true,
     "**/next.config.mjs": true
-  }
+  },
+  "prisma.pinToPrisma6": true
 }
