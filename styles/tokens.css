@@ -1,0 +1,134 @@
+/* TechBox Design Tokens – single source of truth
+   OKLCH – Persian RTL – matches /public/logo.png black→blue */
+:root {
+  /* — Brand — */
+  --tb-brand: oklch(0.62 0.21 255);
+  --tb-brand-foreground: oklch(0.98 0.005 255);
+  --tb-brand-dim: oklch(0.62 0.21 255 / 0.14);
+
+  /* — Semantic – light — */
+  --tb-background: oklch(0.985 0.006 270);
+  --tb-foreground: oklch(0.18 0.025 270);
+  --tb-surface-1: oklch(0.96 0.012 270);
+  --tb-surface-2: oklch(0.92 0.015 270);
+  --tb-muted: oklch(0.94 0.010 270);
+  --tb-muted-foreground: oklch(0.50 0.025 270);
+  --tb-border: oklch(0.88 0.018 270);
+  --tb-ring: oklch(0.55 0.20 260);
+  --tb-card: oklch(1 0 0);
+  --tb-card-foreground: oklch(0.18 0.025 270);
+  --tb-popover: oklch(1 0 0);
+  --tb-popover-foreground: oklch(0.18 0.025 270);
+
+  /* — Module accent tokens — */
+  --tb-blog:    oklch(0.70 0.17 52);   /* orange */
+  --tb-news:    oklch(0.64 0.22 25);   /* rose */
+  --tb-media:   oklch(0.82 0.15 85);   /* amber */
+  --tb-shop:    oklch(0.80 0.19 125);  /* lime */
+  --tb-tools:   oklch(0.82 0.12 200);  /* cyan */
+  --tb-forum:   oklch(0.78 0.16 5);    /* rose-300 */
+  --tb-review:  oklch(0.70 0.17 240);  /* sky */
+  --tb-download: oklch(0.72 0.20 350);
+  --tb-home:    oklch(0.62 0.22 290);  /* violet */
+  --tb-account: oklch(0.80 0.12 15);   /* red-200 */
+
+  /* — Radius — */
+  --tb-radius-xs: 6px;
+  --tb-radius-sm: 8px;
+  --tb-radius-md: 12px;
+  --tb-radius-lg: 16px;
+  --tb-radius-xl: 20px;
+  --tb-radius-2xl: 24px;
+  --tb-radius-full: 9999px;
+
+  /* — Elevation / Shadow — */
+  --tb-shadow-sm: 0 1px 3px rgba(2,8,23,.06), 0 1px 2px rgba(2,8,23,.04);
+  --tb-shadow: 0 4px 16px rgba(2,8,23,.08), 0 2px 6px rgba(2,8,23,.05);
+  --tb-shadow-md: 0 8px 28px rgba(2,8,23,.10), 0 3px 10px rgba(2,8,23,.06);
+  --tb-shadow-lg: 0 16px 44px rgba(2,8,23,.14), 0 6px 16px rgba(2,8,23,.08);
+  --tb-shadow-glow: 0 0 24px rgba(59,130,246,.22), 0 0 72px rgba(14,165,233,.10);
+
+  /* — Blur — */
+  --tb-blur-sm: 6px;
+  --tb-blur-md: 12px;
+  --tb-blur-lg: 20px;
+  --tb-blur-xl: 28px;
+  --tb-glass-blur: 18px;
+
+  /* — Motion — */
+  --tb-duration-instant: 80ms;
+  --tb-duration-fast: 150ms;
+  --tb-duration-normal: 220ms;
+  --tb-duration-slow: 340ms;
+  --tb-duration-slower: 520ms;
+  --tb-ease-standard: cubic-bezier(.2,.8,.2,1);
+  --tb-ease-emphasized: cubic-bezier(.2,0,0,1);
+  --tb-ease-out: cubic-bezier(0,0,.38,1);
+  --tb-ease-in-out: cubic-bezier(.4,0,.2,1);
+
+  /* — Typography scale — */
+  --tb-text-2xs: 0.6875rem; /*11px*/
+  --tb-text-xs: 0.75rem;    /*12px*/
+  --tb-text-sm: 0.8125rem;  /*13px*/
+  --tb-text-base: 0.875rem; /*14px*/
+  --tb-text-md: 1rem;       /*16px*/
+  --tb-text-lg: 1.125rem;   /*18px*/
+  --tb-text-xl: 1.25rem;    /*20px*/
+  --tb-text-2xl: 1.5rem;    /*24px*/
+  --tb-text-3xl: 1.875rem;  /*30px*/
+  --tb-text-4xl: 2.25rem;   /*36px*/
+  --tb-text-5xl: 3rem;      /*48px*/
+
+  --tb-leading-tight: 1.25;
+  --tb-leading-snug: 1.45;
+  --tb-leading-normal: 1.7;
+  --tb-leading-relaxed: 1.95;
+
+  --tb-weight-regular: 400;
+  --tb-weight-medium: 500;
+  --tb-weight-semibold: 600;
+  --tb-weight-bold: 700;
+  --tb-weight-extrabold: 800;
+  --tb-weight-black: 900;
+
+  /* — Focus ring — */
+  --tb-focus-ring: 0 0 0 3px rgba(59,130,246,.35);
+}
+
+/* DARK – TechBox cube – #020617 → #0b1e4a */
+.dark {
+  --tb-background: #050a14;
+  --tb-foreground: #e6edff;
+  --tb-surface-1: #0f172a;
+  --tb-surface-2: #12223f;
+  --tb-muted: #0f172a;
+  --tb-muted-foreground: #8aa0c7;
+  --tb-border: #1e2d4d;
+  --tb-ring: #60a5fa;
+  --tb-card: #0b152a;
+  --tb-card-foreground: #e6edff;
+  --tb-popover: #0b152a;
+  --tb-popover-foreground: #e6edff;
+
+  --tb-brand: #60a5fa;
+  --tb-brand-dim: rgba(96,165,250,.18);
+
+  /* module accents – dark tuned */
+  --tb-blog:    #fb923c;
+  --tb-news:    #fb7185;
+  --tb-media:   #fcd34d;
+  --tb-shop:    #a3e635;
+  --tb-tools:   #67e8f9;
+  --tb-forum:   #fda4af;
+  --tb-review:  #38bdf8;
+  --tb-download:#f472b6;
+  --tb-home:    #a78bfa;
+  --tb-account: #fca5a5;
+
+  --tb-shadow-sm: 0 1px 3px rgba(0,0,0,.30), 0 1px 2px rgba(0,0,0,.22);
+  --tb-shadow: 0 6px 24px rgba(0,0,0,.38), 0 2px 8px rgba(0,0,0,.24);
+  --tb-shadow-md: 0 10px 36px rgba(0,0,0,.42), 0 4px 12px rgba(0,0,0,.28);
+  --tb-shadow-lg: 0 20px 60px rgba(0,0,0,.5), 0 8px 20px rgba(0,0,0,.32);
+  --tb-shadow-glow: 0 0 28px rgba(59,130,246,.28), 0 0 80px rgba(14,165,233,.14);
+  --tb-glass-blur: 24px;
+}
