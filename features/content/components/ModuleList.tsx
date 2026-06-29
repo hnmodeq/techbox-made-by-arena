@@ -1,5 +1,5 @@
 import { getModuleItems, moduleMeta, type ModuleSlug } from "@/lib/content";
-import { ContentCard } from "@/components/common/ContentCard";
+import { ContentCard } from "@/features/content/components/ContentCard";
 import Link from "next/link";
 
 export default function ModuleList({ module }: { module: ModuleSlug }) {

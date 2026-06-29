@@ -12,4 +12,4 @@ export * from "./Switch";
 export * from "./LikeButton";
 
 // Re-export design tokens for TS usage
-export * from "@/styles";
+export * from "@/design";
