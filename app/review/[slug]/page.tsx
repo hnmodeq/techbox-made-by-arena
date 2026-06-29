@@ -1,5 +1,5 @@
 import { getBySlug, getModuleItems } from "@/lib/content";
-import ContentDetail from "@/features/content/components/ContentDetail";
+import ContentDetail from "@/components/common/ContentDetail";
 import { notFound } from "next/navigation";
 
 type P = Promise<{slug:string}>;

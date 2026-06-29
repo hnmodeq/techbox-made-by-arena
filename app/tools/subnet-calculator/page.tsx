@@ -1,4 +1,4 @@
-import SubnetCalculator from "@/components/tools/subnet-calculator";
+import SubnetCalculator from "@/features/tools/components/SubnetCalculator";
 export const metadata = { title: "ماشین حساب Subnet | تکباکس" };
 export default function Page(){
   return (

@@ -1,0 +1,78 @@
+@import "tailwindcss";
+@import "../tokens/colors.css";
+@import "./primitives.css";
+
+@theme inline {
+  --font-sans: var(--font-kalameh);
+
+  --color-background: var(--tb-background);
+  --color-foreground: var(--tb-foreground);
+  --color-primary: var(--tb-brand);
+  --color-primary-foreground: var(--tb-brand-foreground);
+  --color-muted: var(--tb-muted);
+  --color-muted-foreground: var(--tb-muted-foreground);
+  --color-border: var(--tb-border);
+  --color-ring: var(--tb-ring);
+  --color-card: var(--tb-card);
+  --color-card-foreground: var(--tb-card-foreground);
+
+  --radius-lg: var(--tb-radius-lg);
+  --radius-xl: var(--tb-radius-xl);
+  --radius-2xl: var(--tb-radius-2xl);
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  font-family:var(--font-kalameh),Vazirmatn,system-ui,sans-serif;
+  direction:rtl;
+}
+
+body{
+  margin:0;
+  background:var(--tb-background);
+  color:var(--tb-foreground);
+  min-height:100dvh;
+}
+
+/* typography */
+
+h1{
+  font-size:clamp(1.6rem,3.5vw,2.25rem);
+  font-weight:900;
+  line-height:1.35;
+}
+
+h2{
+  font-size:clamp(1.3rem,2.5vw,1.75rem);
+  font-weight:800;
+}
+
+h3{
+  font-size:clamp(1.05rem,1.8vw,1.25rem);
+  font-weight:700;
+}
+
+p,li{
+  font-size:14px;
+  line-height:1.9;
+  color:var(--tb-muted-foreground);
+}
+
+/* utilities */
+
+.line-clamp-2{
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+
+.line-clamp-3{
+  display:-webkit-box;
+  -webkit-line-clamp:3;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+}

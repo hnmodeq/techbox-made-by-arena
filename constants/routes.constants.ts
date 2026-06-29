@@ -1,0 +1,21 @@
+export const ROUTES = {
+  HOME: "/",
+  BLOG: "/blog",
+  NEWS: "/news",
+  MEDIA: "/media",
+  REVIEW: "/review",
+  SHOP: "/shop",
+  TOOLS: "/tools",
+  FORUM: "/forum",
+  DOWNLOAD: "/download",
+  ACCOUNT: "/account",
+  ADMIN: "/admin",
+  ADMIN_LOGIN: "/admin/login",
+  ADMIN_POSTS: "/admin/posts",
+  ADMIN_ROLES: "/admin/roles",
+  CONTACT: "/contact",
+  ABOUT: "/about",
+  CONSULTATION: "/consultation",
+  SEARCH: "/search",
+} as const;
+export type AppRoute = typeof ROUTES[keyof typeof ROUTES];

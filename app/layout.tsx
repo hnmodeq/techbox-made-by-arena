@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import "./globals.css";
+import "@/design/foundation/globals.css";
 import { kalameh } from "@/lib/fonts";
 import { LayoutShell } from "@/components/layout/LayoutShell";
 

@@ -1,2 +1,0 @@
-/* Re-export tokens.css – keeps @import path stable for legacy imports */
-@import "./tokens.css";

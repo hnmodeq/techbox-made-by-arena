@@ -7,13 +7,7 @@ const rootDir = process.cwd();
 const outputFile = path.join(rootDir, "readme", "transferdata.md");
 
 const targets = [
-  "template (feeds)",
-  "template (pages)",
-  // "app",
-  // "components",
-  // "data",
-  // "lib",
-  // "public",
+"styles",
 
 
 ];

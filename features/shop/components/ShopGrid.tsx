@@ -2,7 +2,7 @@
 import { getModuleItems, moduleMeta } from "@/lib/content";
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import { useCart } from "@/features/shop/hooks/cart-context";
+import { useCart } from "@/providers/cart.provider";
 
 const prices: Record<string, {price: string, old?: string}> = {
   "qnap-ts-2277": { price: "۴۸,۹۰۰,۰۰۰", old: "۵۲,۰۰۰,۰۰۰" },

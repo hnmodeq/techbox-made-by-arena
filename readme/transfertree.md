@@ -10,8 +10,6 @@ techbox-made-by-arena
 │   │   └── page.tsx
 │   ├── account
 │   │   └── page.tsx
-│   ├── actions
-│   │   └── comments.ts
 │   ├── admin
 │   │   ├── login
 │   │   │   └── page.tsx
@@ -94,75 +92,51 @@ techbox-made-by-arena
 │   │   ├── [slug]
 │   │   │   └── page.tsx
 │   │   └── page.tsx
-│   ├── globals.css
 │   ├── layout.tsx
 │   └── page.tsx
 ├── components
-│   ├── common
-│   │   ├── BentoCard.tsx
-│   │   └── ContentCard.tsx
+│   ├── animations
+│   │   ├── FadeIn.tsx
+│   │   ├── index.ts
+│   │   ├── MotionSection.tsx
+│   │   └── SlideIn.tsx
 │   ├── layout
 │   │   ├── Footer.tsx
-│   │   └── LayoutShell.tsx
-│   ├── media
-│   │   └── video-player.tsx
-│   ├── sections
-│   │   ├── blog-section.tsx
-│   │   ├── footer-section.tsx
-│   │   ├── hero-section.tsx
-│   │   ├── home-modules-section.tsx
-│   │   ├── home-news-ticker-section.tsx
-│   │   └── sidebar-section.tsx
-│   ├── shop
-│   │   └── cart-context.tsx
-│   ├── sidebar
-│   │   ├── sidebar.config.ts
-│   │   ├── sidebar.store.ts
-│   │   ├── sidebar.types.ts
+│   │   ├── LayoutShell.tsx
+│   │   ├── Sidebar.tsx
 │   │   ├── SidebarContent.tsx
 │   │   ├── SidebarShell.tsx
-│   │   ├── SidebarTooltip.tsx
-│   │   ├── theme.store.ts
-│   │   └── useFabTop.ts
-│   ├── tools
-│   │   ├── raid-calculator.tsx
-│   │   └── subnet-calculator.tsx
-│   ├── ui
-│   │   ├── Badge.tsx
-│   │   ├── Button.tsx
-│   │   ├── Card.tsx
-│   │   ├── Chip.tsx
-│   │   ├── Dropdown.tsx
-│   │   ├── index.ts
-│   │   ├── Input.tsx
-│   │   ├── LikeButton.tsx
-│   │   ├── SearchBar.tsx
-│   │   ├── Switch.tsx
-│   │   ├── Tabs.tsx
-│   │   ├── Textarea.tsx
-│   │   └── Tooltip.tsx
-│   ├── bento-card.tsx
-│   ├── blog-grid.tsx
-│   ├── chatbot.tsx
-│   ├── comment-section.tsx
-│   ├── content-card.tsx
-│   ├── content-detail.tsx
-│   ├── download-detail.tsx
-│   ├── download-table.tsx
-│   ├── forum-list.tsx
-│   ├── layout-shell.tsx
-│   ├── like-button.tsx
-│   ├── media-gallery.tsx
-│   ├── module-list.tsx
-│   ├── news-list.tsx
-│   ├── review-grid.tsx
-│   ├── shop-grid.tsx
-│   ├── suggestion-grid.tsx
-│   └── tools-grid.tsx
+│   │   └── SidebarTooltip.tsx
+│   └── ui
+│       ├── Avatar.tsx
+│       ├── Badge.tsx
+│       ├── Button.tsx
+│       ├── Card.tsx
+│       ├── Checkbox.tsx
+│       ├── Chip.tsx
+│       ├── Dropdown.tsx
+│       ├── IconButton.tsx
+│       ├── index.ts
+│       ├── Input.tsx
+│       ├── LikeButton.tsx
+│       ├── Modal.tsx
+│       ├── Radio.tsx
+│       ├── SearchBar.tsx
+│       ├── Skeleton.tsx
+│       ├── Switch.tsx
+│       ├── Tabs.tsx
+│       ├── Textarea.tsx
+│       └── Tooltip.tsx
 ├── config
-│   ├── fonts.ts
 │   ├── module-colors.ts
-│   └── modules.config.ts
+│   ├── modules.config.ts
+│   └── sidebar.config.ts
+├── constants
+│   ├── app.constants.ts
+│   ├── index.ts
+│   ├── module.constants.ts
+│   ├── routes.constants.ts
+│   └── validation.constants.ts
 ├── data
 │   ├── blog.json
 │   ├── comments.json
@@ -175,8 +149,22 @@ techbox-made-by-arena
 │   ├── shop.json
 │   ├── tools.json
 │   └── users.json
-├── deprecated
-│   └── BlogSection.legacy.tsx
+├── design
+│   ├── foundation
+│   │   ├── globals.css
+│   │   └── primitives.css
+│   ├── presets
+│   │   ├── effects.ts
+│   │   ├── interactions.ts
+│   │   └── surfaces.ts
+│   ├── tokens
+│   │   ├── blur.ts
+│   │   ├── colors.css
+│   │   ├── motion.ts
+│   │   ├── radius.ts
+│   │   ├── shadows.ts
+│   │   └── typography.ts
+│   └── index.ts
 ├── features
 │   ├── blog
 │   │   └── components
@@ -185,10 +173,14 @@ techbox-made-by-arena
 │   │   └── components
 │   │       └── Chatbot.tsx
 │   ├── comment
+│   │   ├── actions
+│   │   │   └── comments.ts
 │   │   └── components
 │   │       └── CommentSection.tsx
 │   ├── content
 │   │   └── components
+│   │       ├── BentoCard.tsx
+│   │       ├── ContentCard.tsx
 │   │       ├── ContentDetail.tsx
 │   │       ├── ModuleList.tsx
 │   │       └── SuggestionGrid.tsx
@@ -203,18 +195,6 @@ techbox-made-by-arena
 │   │   └── components
 │   │       ├── HeroSection.tsx
 │   │       └── HomeModulesSection.tsx
-│   ├── layout
-│   │   ├── components
-│   │   │   ├── SidebarMain.tsx
-│   │   │   └── SidebarShell.tsx
-│   │   ├── sidebar.config.ts
-│   │   ├── sidebar.store.ts
-│   │   ├── sidebar.types.ts
-│   │   ├── SidebarContent.tsx
-│   │   ├── SidebarShell.tsx
-│   │   ├── SidebarTooltip.tsx
-│   │   ├── theme.store.ts
-│   │   └── useFabTop.ts
 │   ├── media
 │   │   └── components
 │   │       ├── MediaGallery.tsx
@@ -229,16 +209,13 @@ techbox-made-by-arena
 │   ├── shop
 │   │   ├── components
 │   │   │   └── ShopGrid.tsx
-│   │   ├── hooks
-│   │   │   └── cart-context.tsx
-│   │   └── cart-context.tsx
+│   │   └── hooks
+│   │       └── useCart.tsx
 │   └── tools
-│       ├── components
-│       │   ├── RaidCalculator.tsx
-│       │   ├── SubnetCalculator.tsx
-│       │   └── ToolsGrid.tsx
-│       ├── raid-calculator.tsx
-│       └── subnet-calculator.tsx
+│       └── components
+│           ├── RaidCalculator.tsx
+│           ├── SubnetCalculator.tsx
+│           └── ToolsGrid.tsx
 ├── hooks
 │   └── useFabTop.ts
 ├── lib
@@ -247,14 +224,17 @@ techbox-made-by-arena
 │   ├── content.ts
 │   ├── db.ts
 │   ├── fonts.ts
-│   ├── module-colors.ts
 │   ├── modules.ts
-│   ├── sidebar.store.ts
-│   ├── theme.store.ts
 │   └── utils.ts
 ├── prisma
 │   ├── schema.prisma
 │   └── seed.ts
+├── providers
+│   ├── auth.provider.tsx
+│   ├── cart.provider.tsx
+│   ├── index.tsx
+│   ├── query.provider.tsx
+│   └── theme.provider.tsx
 ├── public
 │   ├── assets
 │   │   ├── atiye.png
@@ -281,39 +261,36 @@ techbox-made-by-arena
 │   │   └── KalamehWebFaNum-Thin.woff2
 │   └── logo.png
 ├── readme
+│   ├── transferdata.md
 │   └── transfertree.md
 ├── scripts
 │   ├── transferdata.cjs
-│   └── transfertree.cjs
-├── styles
-│   ├── blur.ts
-│   ├── colors.css
-│   ├── effects.ts
-│   ├── fonts.ts
-│   ├── globals.css
+│   ├── transfertree.cjs
+│   └── verify-build.sh
+├── stores
+│   ├── auth.store.ts
 │   ├── index.ts
-│   ├── motion.ts
-│   ├── radius.ts
-│   ├── shadows.ts
-│   ├── tokens.css
-│   └── typography.ts
-├── uploads
-│   └── logo.png
-├── DOCS_STRUCTURE.md
-├── DOCS_STYLING.md
-├── DOCS_UI_COMPONENTS.md
+│   ├── sidebar.store.ts
+│   └── theme.store.ts
+├── tests
+│   ├── unit
+│   │   ├── auth.test.ts
+│   │   └── content.test.ts
+│   └── setup.ts
+├── types
+│   ├── api.ts
+│   ├── common.ts
+│   ├── content.ts
+│   ├── index.ts
+│   ├── sidebar.types.ts
+│   └── user.ts
 ├── next-env.d.ts
 ├── next.config.mjs
-├── package-lock.json
 ├── package.json
 ├── pnpm-lock.yaml
 ├── pnpm-workspace.yaml
 ├── postcss.config.mjs
-├── postcss.config.mjs.off
 ├── README.md
-├── tailwind.config.ts
-├── tailwind.config.ts.off
-├── TODO_TECHBOX_v3.md
-├── TODO_TECHBOX_v4.md
-└── tsconfig.json
+├── tsconfig.json
+└── tsconfig.tsbuildinfo
 ```

@@ -1,4 +1,4 @@
-import RaidCalculator from "@/components/tools/raid-calculator";
+import RaidCalculator from "@/features/tools/components/RaidCalculator";
 export const metadata = { title: "ماشین حساب RAID | تکباکس" };
 export default function Page(){
   return (

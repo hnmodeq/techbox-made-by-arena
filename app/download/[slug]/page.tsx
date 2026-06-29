@@ -1,5 +1,5 @@
 import { getBySlug, getModuleItems } from "@/lib/content";
-import DownloadDetail from "@/components/download-detail";
+import DownloadDetail from "@/features/download/components/DownloadDetail";
 import { notFound } from "next/navigation";
 
 type P = Promise<{slug:string}>;

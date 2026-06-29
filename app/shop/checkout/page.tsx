@@ -1,5 +1,5 @@
 "use client";
-import { useCart } from "@/features/shop/hooks/cart-context";
+import { useCart } from "@/providers/cart.provider";
 import Link from "next/link";
 import { useState } from "react";
 
