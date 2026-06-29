@@ -65,7 +65,7 @@ export default function SidebarContent({
           <div className="h-10 w-10 shrink-0 relative">
             {onLogoClick ? (
               <SidebarTooltip label="باز/بستن منو" enabled={!expanded}>
-                <button onClick={onLogoClick} className="w-10 h-10 rounded-xl overflow-hidden hover:opacity-90 transition-opacity" aria-label="toggle sidebar">
+                <button onClick={onLogoClick} className="relative w-10 h-10 rounded-xl overflow-hidden hover:opacity-90 transition-opacity" aria-label="toggle sidebar">
                   <Image src="/logo.png" alt="تکباکس" fill sizes="40px" className="object-contain" />
                 </button>
               </SidebarTooltip>

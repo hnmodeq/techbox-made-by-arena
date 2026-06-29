@@ -1,5 +1,3 @@
-/* TechBox Design Tokens – single source of truth
-   OKLCH – Persian RTL – matches /public/logo.png black→blue */
 :root {
   /* — Brand — */
   --tb-brand: oklch(0.62 0.21 255);
@@ -90,8 +88,6 @@
   --tb-weight-bold: 700;
   --tb-weight-extrabold: 800;
   --tb-weight-black: 900;
-
-  /* — Focus ring — */
   --tb-focus-ring: 0 0 0 3px rgba(59,130,246,.35);
 }
 
