@@ -13,20 +13,20 @@
 
   "files.exclude": {
     "**/.git": true,
-    "**/.env": false,
-    "**/.env.local": false,
+    "**/.env": true,
+    "**/.env.local": true,
     "**/.gitattributes": true,
     "**/.gitignore": true,
     "**/next-env.d.ts": true,
     "**/tailwind.config.ts": true,
-    "**/tsconfig.json": false,
+    "**/tsconfig.json": true,
     "**/components.json": true,
     "**/next.config.ts": true,
     "**/eslint.config.mjs": true,
     "**/package.json": true,
     "**/pnpm-lock.yaml": true,
     "**/pnpm-workspace.yaml": true,
-    "**/postcss.config.mjs": false,
+    "**/postcss.config.mjs": true,
     "**/.DS_Store": true,
     "**/node_modules": true,
     "**/dist": true,
@@ -34,8 +34,11 @@
     "**/.tsbuildinfo": true,
     "**/.coverage": true,
     "**/pnpm-debug.log": true,
-    "**/tsconfig.tsbuildinfo": false,
-    "**/next.config.mjs": true
+    "**/tsconfig.tsbuildinfo": true,
+    "**/next.config.mjs": true,
+    "**/.config" : true,
+    "**/.continue" : true,
+    
   },
   "prisma.pinToPrisma6": true,
   "js/ts.tsdk.path": "node_modules\\typescript\\lib"
