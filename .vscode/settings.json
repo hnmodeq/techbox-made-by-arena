@@ -14,7 +14,7 @@
   "files.exclude": {
     "**/.git": true,
     "**/.env": false,
-    "**/.env.local": true,
+    "**/.env.local": false,
     "**/.gitattributes": true,
     "**/.gitignore": true,
     "**/next-env.d.ts": true,

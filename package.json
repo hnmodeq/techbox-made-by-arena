@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@fontsource/vazirmatn": "^5.2.8",
+    "@neondatabase/serverless": "^1.1.0",
     "@prisma/client": "^6.19.3",
     "bcryptjs": "^2.4.3",
     "clsx": "^2.1.1",
