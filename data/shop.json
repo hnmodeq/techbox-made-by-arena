@@ -1,0 +1,32 @@
+[
+  {
+    "slug": "qnap-ts-2277",
+    "module": "shop",
+    "title": "ذخیره‌ساز تحت شبکه QNAP TS-2277",
+    "excerpt": "2Bay، 10GbE، پردازنده Ryzen.",
+    "content": "مشخصات کامل QNAP-2277...",
+    "image": "/assets/blog-6.png",
+    "tags": ["QNAP-2277", "nas", "qnap", "ذخیره‌سازی", "فروشگاه"],
+    "author": { "name": "فروشگاه تکباکس", "role": "فروش" },
+    "date": "2026-07-12",
+    "date_fa": "21 تیر 1405",
+    "likes": 31,
+    "views": 980,
+    "category": "NAS"
+  },
+  {
+    "slug": "dell-r750",
+    "module": "shop",
+    "title": "سرور Dell PowerEdge R750",
+    "excerpt": "2U، Xeon Scalable نسل 3.",
+    "content": "...",
+    "image": "/assets/blog-1.jpg",
+    "tags": ["dell", "سرور", "فروشگاه"],
+    "author": { "name": "فروشگاه تکباکس", "role": "فروش" },
+    "date": "2026-06-10",
+    "date_fa": "20 خرداد 1405",
+    "likes": 12,
+    "views": 540,
+    "category": "سرور"
+  }
+]

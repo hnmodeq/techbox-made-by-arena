@@ -1,0 +1,112 @@
+export type ModuleSlug =
+  | "blog"
+  | "news"
+  | "media"
+  | "review"
+  | "tools"
+  | "download"
+  | "shop"
+  | "forum";
+
+export type ContentItem = {
+  slug: string;
+  module: ModuleSlug;
+  title: string;
+  excerpt: string;
+  content?: string;
+  image?: string;
+  tags: string[];
+  author: { name: string; role?: string; avatar?: string };
+  date: string; // ISO
+  date_fa: string;
+  time?: string;
+  source?: string;
+  likes: number;
+  views: number;
+  category?: string;
+};
+
+import blogData from "@/data/blog.json";
+import newsData from "@/data/news.json";
+import mediaData from "@/data/media.json";
+import reviewData from "@/data/review.json";
+import toolsData from "@/data/tools.json";
+import downloadData from "@/data/download.json";
+import shopData from "@/data/shop.json";
+import forumData from "@/data/forum.json";
+
+const all: Record<ModuleSlug, ContentItem[]> = {
+  blog: blogData as ContentItem[],
+  news: newsData as ContentItem[],
+  media: mediaData as ContentItem[],
+  review: reviewData as ContentItem[],
+  tools: toolsData as ContentItem[],
+  download: downloadData as ContentItem[],
+  shop: shopData as ContentItem[],
+  forum: forumData as ContentItem[],
+};
+
+export function getModuleItems(module: ModuleSlug): ContentItem[] {
+  return [...(all[module] || [])].sort((a, b) => +new Date(b.date) - +new Date(a.date));
+}
+
+export function getLatest(module: ModuleSlug, n = 3) {
+  return getModuleItems(module).slice(0, n);
+}
+
+export function getBySlug(module: ModuleSlug, slug: string) {
+  return getModuleItems(module).find(i => i.slug === slug) || null;
+}
+
+export function getAllAcross(): ContentItem[] {
+  return (Object.keys(all) as ModuleSlug[])
+    .flatMap(m => getModuleItems(m))
+    .sort((a, b) => +new Date(b.date) - +new Date(a.date));
+}
+
+export function getRelated(current: ContentItem, limit = 6): ContentItem[] {
+  const tagSet = new Set(current.tags);
+  const pool = getAllAcross().filter(
+    c => c.slug !== current.slug && c.tags.some(t => tagSet.has(t))
+  );
+  // fallback: same category / module
+  if (pool.length < limit) {
+    const extra = getAllAcross().filter(
+      c => c.slug !== current.slug && !pool.includes(c) && (c.category === current.category || c.module !== current.module)
+    );
+    pool.push(...extra);
+  }
+  // score
+  return pool
+    .map(c => ({
+      c,
+      score: c.tags.filter(t => tagSet.has(t)).length * 3 +
+        (c.category === current.category ? 1 : 0) +
+        (c.module !== current.module ? 0.5 : 0)
+    }))
+    .sort((a, b) => b.score - a.score)
+    .slice(0, limit)
+    .map(x => x.c);
+}
+
+export function searchAcross(q: string) {
+  const s = q.trim().toLowerCase();
+  if (!s) return [];
+  return getAllAcross().filter(
+    c =>
+      c.title.toLowerCase().includes(s) ||
+      c.excerpt.toLowerCase().includes(s) ||
+      c.tags.some(t => t.toLowerCase().includes(s))
+  );
+}
+
+export const moduleMeta: Record<ModuleSlug, { title: string; titleFa: string; color: string; href: string }> = {
+  blog: { title: "blog", titleFa: "مجله", color: "text-orange-400", href: "/blog" },
+  news: { title: "news", titleFa: "اخبار", color: "text-rose-500", href: "/news" },
+  media: { title: "media", titleFa: "رسانه", color: "text-amber-300", href: "/media" },
+  review: { title: "review", titleFa: "نقد و بررسی", color: "text-sky-500", href: "/review" },
+  tools: { title: "tools", titleFa: "ابزارها", color: "text-cyan-300", href: "/tools" },
+  download: { title: "download", titleFa: "دانلود", color: "text-pink-400", href: "/download" },
+  shop: { title: "shop", titleFa: "فروشگاه", color: "text-lime-400", href: "/shop" },
+  forum: { title: "forum", titleFa: "انجمن", color: "text-rose-300", href: "/forum" },
+};

@@ -3,11 +3,10 @@
 import { useSyncExternalStore } from "react";
 
 const STORAGE_KEY = "sidebar-mobile-fab-top";
-const BTN_SIZE = 80; // Adjusted from 200 to be more reasonable
-const SAFE_MARGIN = 24;
+const BTN_SIZE = 200;
+const SAFE_MARGIN = 64;
 
 function clampTopByHeight(top: number, btnH: number) {
-  if (typeof window === "undefined") return SAFE_MARGIN;
   const minTop = SAFE_MARGIN;
   const maxTop = window.innerHeight - btnH - SAFE_MARGIN;
   if (maxTop <= minTop) return (window.innerHeight - btnH) / 2;
@@ -15,7 +14,6 @@ function clampTopByHeight(top: number, btnH: number) {
 }
 
 function getClientFabTop() {
-  if (typeof window === "undefined") return SAFE_MARGIN;
   const saved = window.localStorage.getItem(STORAGE_KEY);
   if (saved !== null) {
     const parsed = Number(saved);
@@ -25,16 +23,20 @@ function getClientFabTop() {
 }
 
 function getServerFabTop() {
+  // مقدار ثابت SSR-safe
   return SAFE_MARGIN;
 }
 
 function subscribe(callback: () => void) {
-  if (typeof window === "undefined") return () => {};
-  window.addEventListener("resize", callback);
-  window.addEventListener("storage", callback);
+  const onResize = () => callback();
+  const onStorage = (e: StorageEvent) => {
+    if (e.key === STORAGE_KEY) callback();
+  };
+  window.addEventListener("resize", onResize);
+  window.addEventListener("storage", onStorage);
   return () => {
-    window.removeEventListener("resize", callback);
-    window.removeEventListener("storage", callback);
+    window.removeEventListener("resize", onResize);
+    window.removeEventListener("storage", onStorage);
   };
 }
 
@@ -43,6 +45,5 @@ export function useFabTop() {
 }
 
 export function saveFabTop(top: number) {
-  if (typeof window === "undefined") return;
   window.localStorage.setItem(STORAGE_KEY, String(top));
 }

@@ -10,10 +10,9 @@ export type NavItem = {
   title: string;
   href: string;
   icon: React.ComponentType<{ className?: string; strokeWidth?: number }>;
-  iconClassName?: string;
-  iconHoverClassName?: string;
-  iconActiveClassName?: string;
-  indicatorClassName?: string; // Added this
+  iconClassName?: string;        // رنگ عادی آیکون
+  iconHoverClassName?: string;   // رنگ hover آیکون
+  iconActiveClassName?: string;  // رنگ active آیکون
 };
 
 export type SidebarContentProps = {

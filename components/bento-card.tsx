@@ -1,6 +1,5 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { cn } from "@/lib/utils";
 
 type Props = {
   title: string;
@@ -9,6 +8,9 @@ type Props = {
   color?: string;
   className?: string;
   children?: ReactNode;
+  badge?: string;
+  footerLink?: string;
+  footerLabel?: string;
 };
 
 export default function BentoCard({
@@ -18,37 +20,39 @@ export default function BentoCard({
   color = "text-foreground",
   className = "",
   children,
+  badge,
+  footerLink,
+  footerLabel = "مشاهده همه →",
 }: Props) {
   return (
-    <Link
-      href={href}
-      className={cn(
-        "group relative flex flex-col overflow-hidden rounded-3xl border border-border bg-background/50 p-6 backdrop-blur-sm transition-all duration-300",
-        "hover:-translate-y-1 hover:shadow-2xl hover:shadow-brand/5 hover:border-brand/20",
-        className
-      )}
-    >
-      <div className="flex h-full flex-col gap-4">
-        <div className="space-y-2">
-          <h3 className={cn("text-xl font-bold leading-tight transition-colors", color)}>
-            {title}
-          </h3>
-          {description && (
-            <p className="text-sm leading-relaxed text-muted-foreground/80 line-clamp-2">
-              {description}
-            </p>
-          )}
+    <div className={`group relative overflow-hidden rounded-[28px] border border-border bg-card/80 backdrop-blur-sm p-5 md:p-6 transition-all duration-200 hover:-translate-y-1 hover:shadow-glass ${className}`} >
+      <div className="flex h-full flex-col gap-3">
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <h3 className={`text-xl md:text-2xl font-extrabold leading-tight ${color}`}>
+              <Link href={href} className="hover:opacity-90">{title}</Link>
+            </h3>
+            {description && (
+              <p className="text-[13px] leading-6 text-muted-foreground mt-1.5 max-w-[36ch]">{description}</p>
+            )}
+          </div>
+          {badge && <span className="badge shrink-0">{badge}</span>}
         </div>
-        
-        <div className="relative min-h-0 flex-1 overflow-hidden">
+
+        <div className="min-h-0 flex-1 overflow-hidden">
           {children ?? (
-            <div className="absolute inset-0 rounded-2xl border border-dashed border-border/40 bg-muted/10 group-hover:bg-muted/20 transition-colors" />
+            <div className="h-full rounded-2xl border border-dashed border-border/50 bg-muted/15" />
           )}
         </div>
+
+        {footerLink && (
+          <div className="pt-1">
+            <Link href={footerLink} className="text-xs font-semibold text-muted-foreground hover:text-foreground">
+              {footerLabel}
+            </Link>
+          </div>
+        )}
       </div>
-      
-      {/* Decorative gradient overlay on hover */}
-      <div className="absolute inset-0 pointer-events-none bg-gradient-to-br from-brand/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-    </Link>
+    </div>
   );
 }

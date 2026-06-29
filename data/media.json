@@ -1,0 +1,47 @@
+[
+  {
+    "slug": "qnap-2277-review-video",
+    "module": "media",
+    "title": "بررسی ویدیویی QNAP TS-2277",
+    "excerpt": "آنباکس و تست عملی نَس کیونپ 2277.",
+    "content": "ویدیو بررسی کامل QNAP-2277...",
+    "image": "/assets/blog-6.png",
+    "tags": ["QNAP-2277", "nas", "ویدیو", "بررسی", "ذخیره‌سازی"],
+    "author": { "name": "تیم رسانه تکباکس", "role": "ویدیو" },
+    "date": "2026-07-10",
+    "date_fa": "19 تیر 1405",
+    "likes": 540,
+    "views": 18200,
+    "category": "بررسی ویدیویی"
+  },
+  {
+    "slug": "mikrotik-lab",
+    "module": "media",
+    "title": "لَب عملی میکروتیک – VLAN و روتینگ",
+    "excerpt": "سناریوی واقعی میکروتیک.",
+    "content": "...",
+    "image": "/assets/blog-4.jpg",
+    "tags": ["میکروتیک", "شبکه", "vlan", "ویدیو"],
+    "author": { "name": "روژینا باقری", "role": "کارشناس شبکه" },
+    "date": "2026-07-05",
+    "date_fa": "14 تیر 1405",
+    "likes": 210,
+    "views": 7400,
+    "category": "آموزش ویدیویی"
+  },
+  {
+    "slug": "ai-podcast-ep12",
+    "module": "media",
+    "title": "پادکست هوش مصنوعی قسمت ۱۲",
+    "excerpt": "آینده LLM های فارسی.",
+    "content": "...",
+    "image": "/assets/blog-3.jpeg",
+    "tags": ["هوش مصنوعی", "پادکست"],
+    "author": { "name": "نسترن خداکرمی", "role": "فعال حوزه فناوری اطلاعات" },
+    "date": "2026-06-29",
+    "date_fa": "8 تیر 1405",
+    "likes": 120,
+    "views": 3900,
+    "category": "پادکست"
+  }
+]

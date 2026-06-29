@@ -1,0 +1,88 @@
+"use client";
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import { getCurrentUserClient, logout, type AppUser, canEdit } from "@/lib/auth";
+import { moduleMeta, type ModuleSlug } from "@/lib/content";
+import { useRouter } from "next/navigation";
+
+export default function AdminPage() {
+  const [user, setUser] = useState<AppUser | null>(null);
+  const router = useRouter();
+
+  useEffect(() => {
+    setUser(getCurrentUserClient());
+    const h = () => setUser(getCurrentUserClient());
+    window.addEventListener("storage", h);
+    return () => window.removeEventListener("storage", h);
+  }, []);
+
+  if (!user) {
+    return (
+      <main className="min-h-dvh px-4 py-16" dir="rtl">
+        <div className="mx-auto max-w-md card p-7 text-center space-y-4">
+          <h1 className="text-2xl font-black">ورود ادمین</h1>
+          <p className="text-sm text-muted-foreground">برای تست سریع یکی را انتخاب کنید:</p>
+          <div className="grid gap-2 text-right text-sm">
+            <button onClick={()=>{location.href="/admin/login"}} className="btn btn-primary w-full">رفتن به صفحه ورود</button>
+          </div>
+          <div className="text-[11px] text-muted-foreground leading-6">
+            super_admin: admin<br/>
+            blog_editor: sara<br/>
+            news_editor: nima<br/>
+            media/review: rojina<br/>
+            tools/download: atiye<br/>
+            shop/forum: nastaran
+          </div>
+        </div>
+      </main>
+    );
+  }
+
+  const modules = (Object.keys(moduleMeta) as ModuleSlug[]).filter(m => canEdit(user, m));
+
+  return (
+    <main className="min-h-dvh px-4 py-10" dir="rtl">
+      <section className="mx-auto max-w-5xl space-y-8">
+        <header className="flex items-center justify-between flex-wrap gap-4">
+          <div>
+            <p className="text-xs text-muted-foreground">پنل مدیریت</p>
+            <h1 className="text-2xl font-black">سلام، {user.name}</h1>
+            <p className="text-xs text-muted-foreground mt-1">
+              نقش: {user.role === "super_admin" ? "مدیر کل" : "ویراستار"} • دسترسی: {user.modules.map(m => moduleMeta[m as ModuleSlug]?.titleFa).join("، ")}
+            </p>
+          </div>
+          <button onClick={()=>{logout(); setUser(null); router.refresh();}} className="btn btn-ghost text-xs">خروج</button>
+        </header>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {modules.map(m => {
+            const meta = moduleMeta[m];
+            return (
+              <div key={m} className="card p-5">
+                <div className={`text-lg font-extrabold ${meta.color}`}>{meta.titleFa}</div>
+                <div className="text-xs text-muted-foreground mt-1">/{m}</div>
+                <div className="flex gap-2 mt-4">
+                  <Link href={`/admin/posts?module=${m}`} className="btn btn-ghost text-xs flex-1 text-center">مدیریت</Link>
+                  <Link href={`/admin/posts/new?module=${m}`} className="btn btn-primary text-xs flex-1 text-center">جدید +</Link>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {user.role === "super_admin" && (
+          <div className="card p-5">
+            <h3 className="font-bold mb-3">مدیریت کاربران (مدیر کل)</h3>
+            <div className="text-xs text-muted-foreground leading-7">
+              • سارا احمدی – ویراستار مجله (blog)<br/>
+              • نیما – اخبار<br/>
+              • روژینا – رسانه / نقد<br/>
+              • عطیه – ابزار / دانلود<br/>
+              • نسترن – فروشگاه / انجمن
+            </div>
+          </div>
+        )}
+      </section>
+    </main>
+  );
+}

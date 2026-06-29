@@ -1,3 +1,4 @@
+// components/sidebar/sidebar.config.ts
 import {
   House,
   BookOpen,
@@ -9,6 +10,9 @@ import {
   ShieldCheck,
   Download,
   CircleUser,
+  Calculator,
+  Network,
+  MessageCircleQuestion,
 } from "lucide-react";
 import { NavItem } from "./sidebar.types";
 import { moduleColors } from "@/lib/module-colors";
@@ -26,7 +30,6 @@ export const navItems: NavItem[] = [
     iconClassName: moduleColors.home.base,
     iconHoverClassName: moduleColors.home.hover,
     iconActiveClassName: moduleColors.home.active,
-    indicatorClassName: moduleColors.home.indicator,
   },
   {
     title: "وبلاگ",
@@ -35,7 +38,6 @@ export const navItems: NavItem[] = [
     iconClassName: moduleColors.blog.base,
     iconHoverClassName: moduleColors.blog.hover,
     iconActiveClassName: moduleColors.blog.active,
-    indicatorClassName: moduleColors.blog.indicator,
   },
   {
     title: "اخبار",
@@ -44,7 +46,6 @@ export const navItems: NavItem[] = [
     iconClassName: moduleColors.news.base,
     iconHoverClassName: moduleColors.news.hover,
     iconActiveClassName: moduleColors.news.active,
-    indicatorClassName: moduleColors.news.indicator,
   },
   {
     title: "رسانه",
@@ -53,7 +54,6 @@ export const navItems: NavItem[] = [
     iconClassName: moduleColors.media.base,
     iconHoverClassName: moduleColors.media.hover,
     iconActiveClassName: moduleColors.media.active,
-    indicatorClassName: moduleColors.media.indicator,
   },
   {
     title: "فروشگاه",
@@ -62,7 +62,6 @@ export const navItems: NavItem[] = [
     iconClassName: moduleColors.shop.base,
     iconHoverClassName: moduleColors.shop.hover,
     iconActiveClassName: moduleColors.shop.active,
-    indicatorClassName: moduleColors.shop.indicator,
   },
   {
     title: "ابزارها",
@@ -71,7 +70,30 @@ export const navItems: NavItem[] = [
     iconClassName: moduleColors.tools.base,
     iconHoverClassName: moduleColors.tools.hover,
     iconActiveClassName: moduleColors.tools.active,
-    indicatorClassName: moduleColors.tools.indicator,
+  },
+  {
+    title: "RAID Calculator",
+    href: "/tools/raid-calculator",
+    icon: Calculator,
+    iconClassName: "text-cyan-400",
+    iconHoverClassName: "group-hover:text-cyan-300",
+    iconActiveClassName: "text-cyan-300",
+  },
+  {
+    title: "Subnet Calculator",
+    href: "/tools/subnet-calculator",
+    icon: Network,
+    iconClassName: "text-cyan-400",
+    iconHoverClassName: "group-hover:text-cyan-300",
+    iconActiveClassName: "text-cyan-300",
+  },
+  {
+    title: "مشاوره VIP",
+    href: "/consultation",
+    icon: MessageCircleQuestion,
+    iconClassName: "text-fuchsia-400",
+    iconHoverClassName: "group-hover:text-fuchsia-300",
+    iconActiveClassName: "text-fuchsia-300",
   },
   {
     title: "انجمن",
@@ -80,7 +102,6 @@ export const navItems: NavItem[] = [
     iconClassName: moduleColors.forum.base,
     iconHoverClassName: moduleColors.forum.hover,
     iconActiveClassName: moduleColors.forum.active,
-    indicatorClassName: moduleColors.forum.indicator,
   },
   {
     title: "نقد و بررسی",
@@ -89,7 +110,6 @@ export const navItems: NavItem[] = [
     iconClassName: moduleColors.review.base,
     iconHoverClassName: moduleColors.review.hover,
     iconActiveClassName: moduleColors.review.active,
-    indicatorClassName: moduleColors.review.indicator,
   },
   {
     title: "دانلود",
@@ -98,7 +118,6 @@ export const navItems: NavItem[] = [
     iconClassName: moduleColors.download.base,
     iconHoverClassName: moduleColors.download.hover,
     iconActiveClassName: moduleColors.download.active,
-    indicatorClassName: moduleColors.download.indicator,
   },
 ];
 
@@ -109,11 +128,11 @@ export const accountItem: NavItem = {
   iconClassName: moduleColors.account.base,
   iconHoverClassName: moduleColors.account.hover,
   iconActiveClassName: moduleColors.account.active,
-  indicatorClassName: moduleColors.account.indicator,
 };
 
 export const themeIconClass = {
-  buttonBase: "inline-flex h-10 w-10 items-center rounded-lg transition-all duration-200",
+  buttonBase:
+    "inline-flex h-10 w-10 items-center rounded-lg transition-all duration-200",
   buttonClassName: "text-muted-foreground",
   buttonHoverClassName: "hover:text-foreground",
   sunIconClassName: "text-yellow-500",
@@ -121,7 +140,8 @@ export const themeIconClass = {
   sunIconActiveClassName: "text-foreground group-hover:text-yellow-400",
   moonIconClassName: "text-zinc-200 dark:text-zinc-100",
   moonIconHoverClassName: "group-hover:text-blue-200",
-  moonIconActiveClassName: "text-foreground dark:text-foreground group-hover:text-blue-200",
+  moonIconActiveClassName:
+    "text-foreground dark:text-foreground group-hover:text-blue-200",
 };
 
 export const sidebarBase = [
@@ -132,9 +152,13 @@ export const sidebarBase = [
 
 export const linkBase =
   "group relative flex h-11 w-full items-center rounded-lg text-sm font-normal transition-all duration-200";
+
 export const linkInactive = "text-muted-foreground hover:text-foreground";
+
 export const linkActive = "bg-accent/50 text-secondary";
 
 export function isActive(pathname: string, href: string) {
-  return href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`);
+  return href === "/"
+    ? pathname === "/"
+    : pathname === href || pathname.startsWith(`${href}/`);
 }

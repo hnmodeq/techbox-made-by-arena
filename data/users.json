@@ -1,0 +1,8 @@
+[
+  { "id": "u1", "name": "مدیر کل", "email": "admin@techbox.ir", "username": "admin", "role": "super_admin", "modules": ["blog","news","media","review","tools","download","shop","forum"], "avatar": "/assets/hooman.png" },
+  { "id": "u2", "name": "سارا احمدی", "email": "sara@techbox.ir", "username": "sara", "role": "editor", "modules": ["blog"], "avatar": "/assets/behnaz.png" },
+  { "id": "u3", "name": "نیما", "email": "nima@techbox.ir", "username": "nima", "role": "editor", "modules": ["news"], "avatar": "/assets/hooman.png" },
+  { "id": "u4", "name": "روژینا باقری", "email": "rojina@techbox.ir", "username": "rojina", "role": "editor", "modules": ["media","review"], "avatar": "/assets/rojina.png" },
+  { "id": "u5", "name": "عطیه", "email": "atiye@techbox.ir", "username": "atiye", "role": "editor", "modules": ["tools","download"], "avatar": "/assets/atiye.png" },
+  { "id": "u6", "name": "نسترن", "email": "nastaran@techbox.ir", "username": "nastaran", "role": "editor", "modules": ["shop","forum"], "avatar": "/assets/nastaran.png" }
+]

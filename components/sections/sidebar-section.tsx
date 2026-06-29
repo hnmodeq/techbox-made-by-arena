@@ -12,13 +12,13 @@ export default function SidebarMain({ onMobileOpenChange }: SidebarMainProps) {
     desktopStore.getSnapshot,
     () => true
   );
-  
+
   const mobileOpen = React.useSyncExternalStore(
     mobileStore.subscribe,
     mobileStore.getSnapshot,
     () => false
   );
-  
+
   const theme = React.useSyncExternalStore(
     themeStore.subscribe,
     themeStore.getClientSnapshot,
@@ -27,32 +27,59 @@ export default function SidebarMain({ onMobileOpenChange }: SidebarMainProps) {
 
   React.useEffect(() => {
     document.documentElement.classList.toggle("dark", theme === "dark");
-    document.documentElement.style.colorScheme = theme;
   }, [theme]);
 
   React.useEffect(() => {
     onMobileOpenChange?.(mobileOpen);
   }, [mobileOpen, onMobileOpenChange]);
 
-  // Handle scroll lock for mobile
+  // اگر روی دسکتاپ بودیم و mobileOpen از قبل true مانده بود، ریستش کن
   React.useEffect(() => {
-    if (mobileOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
+    const isDesktop = window.matchMedia("(min-width: 640px)").matches;
+    if (isDesktop && mobileOpen) {
+      mobileStore.set(false);
     }
-    return () => { document.body.style.overflow = ""; };
   }, [mobileOpen]);
+
+  // قفل اسکرول فقط وقتی منوی موبایل باز است و واقعاً روی موبایل هستیم
+  React.useEffect(() => {
+    const isMobile = window.matchMedia("(max-width: 639px)").matches;
+    if (!mobileOpen || !isMobile) return;
+    const prevBodyOverflow = document.body.style.overflow;
+    const prevHtmlOverflow = document.documentElement.style.overflow;
+    document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prevBodyOverflow;
+      document.documentElement.style.overflow = prevHtmlOverflow;
+    };
+  }, [mobileOpen]);
+
+  const onToggleDesktop = React.useCallback(() => {
+    desktopStore.set(!desktopOpen);
+  }, [desktopOpen]);
+
+  const onToggleMobile = React.useCallback(() => {
+    mobileStore.set(!mobileOpen);
+  }, [mobileOpen]);
+
+  const onCloseMobile = React.useCallback(() => {
+    mobileStore.set(false);
+  }, []);
+
+  const onToggleTheme = React.useCallback(() => {
+    themeStore.toggle();
+  }, []);
 
   return (
     <SidebarShell
       mobileOpen={mobileOpen}
       desktopOpen={desktopOpen}
       theme={theme}
-      onToggleTheme={() => themeStore.toggle()}
-      onToggleMobile={() => mobileStore.set(!mobileOpen)}
-      onCloseMobile={() => mobileStore.set(false)}
-      onToggleDesktop={() => desktopStore.set(!desktopOpen)}
+      onToggleTheme={onToggleTheme}
+      onToggleMobile={onToggleMobile}
+      onCloseMobile={onCloseMobile}
+      onToggleDesktop={onToggleDesktop}
     />
   );
 }

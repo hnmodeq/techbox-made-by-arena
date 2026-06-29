@@ -1,0 +1,79 @@
+import { type ContentItem } from "@/lib/content";
+import { moduleMeta } from "@/lib/content";
+import { LikeButton } from "./like-button";
+import CommentSection from "./comment-section";
+import SuggestionGrid from "./suggestion-grid";
+import Link from "next/link";
+
+export default function ContentDetail({ item }: { item: ContentItem }) {
+  const meta = moduleMeta[item.module];
+  return (
+    <article className="mx-auto max-w-3xl px-5 md:px-0 py-10" dir="rtl">
+      <div className="flex items-center gap-2 text-xs text-muted-foreground mb-3">
+        <Link href={`/${item.module}`} className={`${meta.color} font-bold hover:underline`}>{meta.titleFa}</Link>
+        <span>•</span>
+        <span>{item.date_fa}</span>
+        <span>•</span>
+        <span>{item.category}</span>
+      </div>
+
+      <h1 className="text-3xl md:text-[2.4rem] font-black leading-[1.35]">{item.title}</h1>
+      <p className="text-muted-foreground mt-4 text-[15px] leading-8">{item.excerpt}</p>
+
+      <div className="flex flex-wrap items-center gap-3 mt-6 text-xs">
+        <div className="flex items-center gap-2">
+          {item.author.avatar && <img src={item.author.avatar} className="w-8 h-8 rounded-full ring-1 ring-border" alt="" />}
+          <div>
+            <div className="font-semibold text-[13px]">{item.author.name}</div>
+            <div className="text-muted-foreground text-[11px]">{item.author.role}</div>
+          </div>
+        </div>
+        <div className="ms-auto flex items-center gap-2 text-muted-foreground">
+          <span>👁 {item.views.toLocaleString("fa-IR")}</span>
+        </div>
+      </div>
+
+      {item.module === "media" ? (
+        <div className="mt-8 rounded-[22px] overflow-hidden border border-border shadow-card bg-black">
+          <video
+            controls
+            playsInline
+            poster={item.image}
+            className="w-full aspect-video object-contain bg-black"
+            src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+          />
+          <div className="bg-card px-4 py-2 text-[11px] text-muted-foreground flex gap-4">
+            <span>👁 {item.views.toLocaleString("fa-IR")} بازدید</span>
+            <span>♥ {item.likes.toLocaleString("fa-IR")} پسند</span>
+            <span>💬 نظرات فعال</span>
+          </div>
+        </div>
+      ) : item.image && (
+        <div className="mt-8 rounded-[22px] overflow-hidden border border-border shadow-card">
+          <img src={item.image} alt={item.title} className="w-full object-cover max-h-[420px]" />
+        </div>
+      )}
+
+      <div className="prose prose-invert max-w-none mt-8 text-[15px] leading-9 text-muted-foreground" dir="rtl">
+        <p>{item.content || item.excerpt}</p>
+        <p className="mt-4">
+          این مطلب به صورت آزمایشی از دیتاسورس JSON تکباکس بارگذاری شده و سیستم لایک، کامنت و پیشنهاد مرتبط فعال است.
+        </p>
+      </div>
+
+      <div className="flex flex-wrap gap-2 mt-8">
+        {item.tags.map(t => (
+          <Link key={t} href={`/search?q=${encodeURIComponent(t)}`} className="badge hover:bg-muted transition-colors">#{t}</Link>
+        ))}
+      </div>
+
+      <div className="mt-8 flex flex-wrap items-center gap-3">
+        <LikeButton contentType={item.module} slug={item.slug} initial={item.likes} />
+        <button className="btn btn-ghost text-sm">اشتراک‌گذاری</button>
+      </div>
+
+      <SuggestionGrid current={item} />
+      <CommentSection module={item.module} slug={item.slug} />
+    </article>
+  );
+}

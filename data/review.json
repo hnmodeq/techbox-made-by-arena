@@ -1,0 +1,32 @@
+[
+  {
+    "slug": "qnap-2277-full-review",
+    "module": "review",
+    "title": "نقد و بررسی تخصصی QNAP TS-2277",
+    "excerpt": "آیا QNAP-2277 بهترین NAS میان‌رده 2026 است؟",
+    "content": "بررسی کامل سخت‌افزار، نرم‌افزار، سرعت...",
+    "image": "/assets/blog-6.png",
+    "tags": ["QNAP-2277", "nas", "بررسی", "ذخیره‌سازی", "سخت‌افزار"],
+    "author": { "name": "هومن مدق", "role": "کارشناس فناوری اطلاعات" },
+    "date": "2026-07-11",
+    "date_fa": "20 تیر 1405",
+    "likes": 87,
+    "views": 4120,
+    "category": "سخت‌افزار"
+  },
+  {
+    "slug": "dell-r750-review",
+    "module": "review",
+    "title": "بررسی Dell PowerEdge R750",
+    "excerpt": "هیولای رک‌مونت جدید دل.",
+    "content": "...",
+    "image": "/assets/blog-1.jpg",
+    "tags": ["dell", "سرور", "بررسی"],
+    "author": { "name": "عطیه حاتمی", "role": "مهندس کامپیوتر" },
+    "date": "2026-07-01",
+    "date_fa": "10 تیر 1405",
+    "likes": 54,
+    "views": 2100,
+    "category": "سرور"
+  }
+]

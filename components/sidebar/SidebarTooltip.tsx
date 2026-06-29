@@ -1,13 +1,17 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@/lib/utils";
 
 type Props = {
   label: string;
   enabled: boolean;
   children: React.ReactNode;
   tooltipClassName?: string;
+};
+
+type Position = {
+  right: number;
+  top: number;
 };
 
 export default function SidebarTooltip({
@@ -17,7 +21,7 @@ export default function SidebarTooltip({
   tooltipClassName = "",
 }: Props) {
   const [visible, setVisible] = React.useState(false);
-  const [pos, setPos] = React.useState({ right: 0, top: 0 });
+  const [pos, setPos] = React.useState<Position | null>(null);
   const triggerRef = React.useRef<HTMLSpanElement | null>(null);
 
   const updatePosition = React.useCallback(() => {
@@ -29,31 +33,36 @@ export default function SidebarTooltip({
     });
   }, [enabled]);
 
-  const show = () => {
+  const show = React.useCallback(() => {
     if (!enabled) return;
     updatePosition();
     setVisible(true);
-  };
+  }, [enabled, updatePosition]);
 
-  const hide = () => setVisible(false);
+  const hide = React.useCallback(() => {
+    setVisible(false);
+  }, []);
 
   React.useEffect(() => {
     if (!visible) return;
-    window.addEventListener("resize", updatePosition);
-    window.addEventListener("scroll", updatePosition, true);
+    const handle = () => updatePosition();
+    window.addEventListener("resize", handle);
+    window.addEventListener("scroll", handle, true);
     return () => {
-      window.removeEventListener("resize", updatePosition);
-      window.removeEventListener("scroll", updatePosition, true);
+      window.removeEventListener("resize", handle);
+      window.removeEventListener("scroll", handle, true);
     };
   }, [visible, updatePosition]);
 
-  if (!enabled) return <>{children}</>;
+  if (!enabled) {
+    return <>{children}</>;
+  }
 
   return (
     <>
       <span
         ref={triggerRef}
-        className="inline-flex w-full"
+        className="inline-flex"
         onMouseEnter={show}
         onMouseLeave={hide}
         onFocus={show}
@@ -61,13 +70,10 @@ export default function SidebarTooltip({
       >
         {children}
       </span>
-      {visible && (
+      {visible && pos && (
         <span
           role="tooltip"
-          className={cn(
-            "pointer-events-none fixed z-[300] whitespace-nowrap rounded-lg bg-popover px-3 py-2 text-sm font-medium text-popover-foreground shadow-xl ring-1 ring-border/50 animate-in fade-in zoom-in-95 duration-200",
-            tooltipClassName
-          )}
+          className={`pointer-events-none fixed z-[250] whitespace-nowrap rounded-md bg-popover px-2.5 py-1.5 text-xs font-medium shadow-md ring-1 ring-border/40 animate-in fade-in-0 zoom-in-95 duration-150 ${tooltipClassName}`}
           style={{
             right: pos.right,
             top: pos.top,

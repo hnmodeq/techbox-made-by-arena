@@ -2,7 +2,7 @@ import { DESKTOP_KEY, MOBILE_KEY } from "./sidebar.config";
 
 function createBoolStore(key: string, defaultValue: boolean) {
   const listeners = new Set<() => void>();
-  
+
   const getSnapshot = () => {
     if (typeof window === "undefined") return defaultValue;
     const raw = localStorage.getItem(key);

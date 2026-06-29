@@ -1,0 +1,5 @@
+[
+  { "id": "c1", "content_type": "blog", "content_slug": "nas-vs-san", "parent_id": null, "author": "علی", "text": "مقاله عالی بود، مخصوصا بخش QNAP-2277", "likes": 12, "dislikes": 1, "date": "2026-07-13T10:22:00Z" },
+  { "id": "c2", "content_type": "blog", "content_slug": "nas-vs-san", "parent_id": "c1", "author": "سارا", "text": "ممنون علی جان ❤️", "likes": 3, "dislikes": 0, "date": "2026-07-13T11:00:00Z" },
+  { "id": "c3", "content_type": "media", "content_slug": "qnap-2277-review-video", "parent_id": null, "author": "مهدی", "text": "ویدیو QNAP فوق‌العاده بود", "likes": 7, "dislikes": 0, "date": "2026-07-11T09:00:00Z" }
+]

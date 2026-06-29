@@ -1,0 +1,32 @@
+[
+  {
+    "slug": "ubuntu-server-24-iso",
+    "module": "download",
+    "title": "دانلود Ubuntu Server 24.04 LTS",
+    "excerpt": "ایزو رسمی با لینک مستقیم داخل ایران.",
+    "content": "...",
+    "image": "/assets/blog-1.jpg",
+    "tags": ["لینوکس", "ubuntu", "دانلود", "سرور", "ایزو"],
+    "author": { "name": "تکباکس دانلود", "role": "دانلود" },
+    "date": "2026-07-07",
+    "date_fa": "16 تیر 1405",
+    "likes": 920,
+    "views": 34100,
+    "category": "سیستم‌عامل"
+  },
+  {
+    "slug": "qnap-2277-firmware",
+    "module": "download",
+    "title": "فریم‌ور QNAP TS-2277 v5.2",
+    "excerpt": "آخرین فریم‌ور رسمی QNAP-2277.",
+    "content": "...",
+    "image": "/assets/blog-6.png",
+    "tags": ["QNAP-2277", "firmware", "nas", "دانلود", "qnap"],
+    "author": { "name": "تکباکس دانلود", "role": "دانلود" },
+    "date": "2026-07-06",
+    "date_fa": "15 تیر 1405",
+    "likes": 67,
+    "views": 1800,
+    "category": "فریم‌ور"
+  }
+]

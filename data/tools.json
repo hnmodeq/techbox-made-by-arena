@@ -1,0 +1,32 @@
+[
+  {
+    "slug": "subnet-calculator",
+    "module": "tools",
+    "title": "ماشین‌حساب ساب‌نت فارسی",
+    "excerpt": "محاسبه سریع CIDR، IP range و broadcast.",
+    "content": "ابزار آنلاین ساب‌نت...",
+    "image": "/assets/blog-4.jpg",
+    "tags": ["شبکه", "ابزار", "subnet", "آی‌پی"],
+    "author": { "name": "تیم ابزار تکباکس", "role": "ابزار" },
+    "date": "2026-07-09",
+    "date_fa": "18 تیر 1405",
+    "likes": 430,
+    "views": 12500,
+    "category": "شبکه"
+  },
+  {
+    "slug": "raid-calculator",
+    "module": "tools",
+    "title": "محاسبه‌گر RAID",
+    "excerpt": "ظرفیت مفید و تحمل خطا.",
+    "content": "...",
+    "image": "/assets/blog-2.jpg",
+    "tags": ["raid", "storage", "ابزار"],
+    "author": { "name": "تیم ابزار تکباکس", "role": "ابزار" },
+    "date": "2026-06-15",
+    "date_fa": "25 خرداد 1405",
+    "likes": 110,
+    "views": 3400,
+    "category": "ذخیره‌سازی"
+  }
+]

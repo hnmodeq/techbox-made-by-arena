@@ -23,7 +23,7 @@ export const modules: ModuleItem[] = [
   {
     title: "اخبار",
     slug: "news",
-    description: "آخرین خبرهای فناوری، زیرساخ و هوش مصنوعی.",
+    description: "آخرین خبرهای فناوری، زیرساخت و هوش مصنوعی.",
     color: moduleColors.news.active,
     cols: "md:col-span-3",
     rows: "md:row-span-2",

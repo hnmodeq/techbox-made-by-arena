@@ -4,8 +4,8 @@ import { kalameh } from "@/lib/fonts";
 import { LayoutShell } from "@/components/layout-shell";
 
 export const metadata: Metadata = {
-  title: "تکباکس | رسانه تکنولوژی و زیرساخت",
-  description: "پاتوق بچه‌های فناوری اطلاعات، بررسی تخصصی سرور، شبکه و هوش مصنوعی",
+  title: "رسانه تکنولوژی تکباکس",
+  description: "پاتوق بچه‌های فناوری اطلاعات",
 };
 
 export default function RootLayout({
@@ -18,7 +18,7 @@ export default function RootLayout({
       className={kalameh.variable}
       suppressHydrationWarning
     >
-      <body className="font-sans antialiased text-foreground selection:bg-brand/20 selection:text-brand">
+      <body className="font-sans antialiased text-foreground">
         <LayoutShell>{children}</LayoutShell>
       </body>
     </html>

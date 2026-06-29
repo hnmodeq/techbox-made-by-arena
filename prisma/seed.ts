@@ -1,0 +1,85 @@
+import { PrismaClient } from "@prisma/client";
+import bcrypt from "bcryptjs";
+import blog from "../data/blog.json";
+import news from "../data/news.json";
+import media from "../data/media.json";
+import review from "../data/review.json";
+import tools from "../data/tools.json";
+import download from "../data/download.json";
+import shop from "../data/shop.json";
+import forum from "../data/forum.json";
+import users from "../data/users.json";
+import comments from "../data/comments.json";
+
+const prisma = new PrismaClient();
+
+async function main(){
+  console.log("Seeding TechBox…");
+  await prisma.commentVote.deleteMany();
+  await prisma.comment.deleteMany();
+  await prisma.like.deleteMany();
+  await prisma.post.deleteMany();
+  await prisma.user.deleteMany();
+
+  const pw = await bcrypt.hash("techbox123", 10);
+  for(const u of users as any[]){
+    await prisma.user.create({
+      data: {
+        id: u.id,
+        name: u.name,
+        username: u.username,
+        email: u.email,
+        role: u.role === "super_admin" ? "super_admin" : "editor",
+        modules: JSON.stringify(u.modules),
+        avatar: u.avatar || null,
+        password: pw
+      }
+    });
+  }
+
+  const allPosts = [
+    ...blog, ...news, ...media, ...review, ...tools, ...download, ...shop, ...forum
+  ];
+
+  for(const p of allPosts as any[]){
+    await prisma.post.create({
+      data: {
+        slug: p.slug,
+        module: p.module,
+        title: p.title,
+        excerpt: p.excerpt,
+        content: p.content || p.excerpt,
+        image: p.image || null,
+        tags: JSON.stringify(p.tags || []),
+        category: p.category || null,
+        authorName: p.author?.name || "تحریریه",
+        date: new Date(p.date),
+        dateFa: p.date_fa,
+        likes: p.likes || 0,
+        views: p.views || 0,
+        published: true
+      }
+    });
+  }
+
+  // seed comments – map content_type+slug to postId
+  for(const c of comments as any[]){
+    const post = await prisma.post.findFirst({
+      where: { module: c.content_type as any, slug: c.content_slug }
+    });
+    if(!post) continue;
+    await prisma.comment.create({
+      data: {
+        postId: post.id,
+        authorName: c.author,
+        text: c.text,
+        likes: c.likes || 0,
+        dislikes: c.dislikes || 0,
+        createdAt: new Date(c.date)
+      }
+    });
+  }
+
+  console.log("Seed done");
+}
+main().finally(()=>prisma.$disconnect());
