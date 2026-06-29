@@ -1,7 +1,7 @@
 "use client";
 import { useSearchParams } from "next/navigation";
 import { searchAcross } from "@/lib/content";
-import { ContentCard } from "@/components/common/ContentCard";
+import { ContentCard } from "@/features/content/components/ContentCard";
 import { Suspense } from "react";
 
 export const dynamic = "force-dynamic";
