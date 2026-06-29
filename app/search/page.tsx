@@ -21,7 +21,6 @@ function SearchInner(){
     </main>
   );
 }
-
 export default function SearchPage(){
   return <Suspense fallback={<div className="p-10 text-center">...</div>}><SearchInner/></Suspense>
 }
