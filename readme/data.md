@@ -7870,3 +7870,183 @@ export interface AppUser {
 
 ---
 
+## `package.json`
+
+```json
+{
+  "name": "techbox",
+  "version": "0.2.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "db:push": "prisma db push",
+    "db:seed": "tsx prisma/seed.ts",
+    "postinstall": "prisma generate",
+    "data": "node scripts/data.cjs",
+    "tree": "node scripts/tree.cjs"
+  },
+  "dependencies": {
+    "@fontsource/vazirmatn": "^5.2.8",
+    "@neondatabase/serverless": "^1.1.0",
+    "@prisma/client": "^6.19.3",
+    "bcryptjs": "^2.4.3",
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.42.0",
+    "hls.js": "^1.6.16",
+    "jose": "^5.9.0",
+    "lucide-react": "^1.21.0",
+    "next": "16.2.9",
+    "openai": "^6.45.0",
+    "react": "^19",
+    "react-dom": "^19",
+    "tailwind-merge": "^3.6.0",
+    "zod": "^3.25.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.1",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/node": "^26",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^10",
+    "eslint-config-next": "16.2.9",
+    "postcss": "^8",
+    "prisma": "^6.19.3",
+    "tailwindcss": "^4.3.1",
+    "tsx": "^4.19.0",
+    "tw-animate-css": "^1.4.0",
+    "typescript": "^6"
+  }
+}
+
+```
+
+---
+
+## `tsconfig.json`
+
+```json
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
+
+```
+
+---
+
+## `pnpm-workspace.yaml`
+
+```
+allowBuilds:
+  '@prisma/client': true
+  '@prisma/engines': true
+  esbuild: true
+  prisma: true
+  sharp: true
+  unrs-resolver: true
+
+```
+
+---
+
+## `next.config.mjs`
+
+```
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+};
+export default nextConfig;
+
+```
+
+---
+
+## `next-env.d.ts`
+
+```ts
+/// <reference types="next" />
+/// <reference types="next/image-types/global" />
+import "./.next/dev/types/routes.d.ts";
+
+// NOTE: This file should not be edited
+// see https://nextjs.org/docs/app/api-reference/config/typescript for more information.
+
+```
+
+---
+
+## `postcss.config.mjs`
+
+```
+export default {
+  plugins: {
+    "@tailwindcss/postcss": {},
+  },
+}
+
+```
+
+---
+
+## `.env`
+
+```
+DATABASE_URL="file:./dev.db"
+AUTH_SECRET="techbox-dev-secret-change-me-32chars-min"
+NEXT_PUBLIC_SITE_URL="http://localhost:3000"
+
+```
+
+---
+
+## `.env.local`
+
+```
+# Created by Vercel CLI
+VERCEL_OIDC_TOKEN="eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Im1yay00MzAyZWMxYjY3MGY0OGE5OGFkNjFkYWRlNGEyM2JlNyJ9.eyJpc3MiOiJodHRwczovL29pZGMudmVyY2VsLmNvbS9obm1vZGVxcy1wcm9qZWN0cyIsInN1YiI6Im93bmVyOmhubW9kZXFzLXByb2plY3RzOnByb2plY3Q6dGVjaGJveC1tYWRlLWJ5LWFyZW5hOmVudmlyb25tZW50OmRldmVsb3BtZW50Iiwic2NvcGUiOiJvd25lcjpobm1vZGVxcy1wcm9qZWN0czpwcm9qZWN0OnRlY2hib3gtbWFkZS1ieS1hcmVuYTplbnZpcm9ubWVudDpkZXZlbG9wbWVudCIsImF1ZCI6Imh0dHBzOi8vdmVyY2VsLmNvbS9obm1vZGVxcy1wcm9qZWN0cyIsIm93bmVyIjoiaG5tb2RlcXMtcHJvamVjdHMiLCJvd25lcl9pZCI6InRlYW1fSzc1MWRPMWZZQTdRV0k2SGJTZUI2cmFOIiwicHJvamVjdCI6InRlY2hib3gtbWFkZS1ieS1hcmVuYSIsInByb2plY3RfaWQiOiJwcmpfbHhpNWVNSTlxa1dpZWdreksxRGMyYUkzZHhvNCIsImVudmlyb25tZW50IjoiZGV2ZWxvcG1lbnQiLCJwbGFuIjoiaG9iYnkiLCJ1c2VyX2lkIjoiY0VJcG5lQm1UYzJ2enZrV05NV24wZ2xQIiwiY2xpZW50X2lkIjoiY2xfSFl5T1BCTnRGTWZIaGFVbjlMNFFQZlRaejZUUDQ3YnAiLCJuYmYiOjE3ODI3NDA2MDksImlhdCI6MTc4Mjc0MDYwOSwiZXhwIjoxNzgyNzgzODA5fQ.BkRUc7EMMNkhrJdIB2m_8YiyThGt4HS4JSegArwwiz4r81IrcklxSAY3b3aVaoNt1CRaFjhjtr8_CLPbq8rLOZsUIHt8eNv2za5qeAuhEXSW3erBLutKr8o7HRLAbhzG6X0sVFPr3w80rK2xBllhogpLLIqK-PILXlmrJ73T-s9rmbYignvjUpAeMKmwVEmeF4A-7RUVeXgVjdEj3OsHTK3r_z2tBVtQgClSAljl4dsO7zsdGnrhNyg99IjeAiNhnbFeqEfJb2srW23v5gjAqQ68jqu0zlMnfome0J4KMDJLEfwAETg6WO7cpx67TPpWualD8csqs25FJZ5lw8l8Nw"
+
+```
+
+---
+
