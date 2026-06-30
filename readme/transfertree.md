@@ -6,7 +6,15 @@ techbox-made-by-arena
 │   └── nextjs-nodejs
 │       └── config.json
 ├── .continue
-│   └── rules.md
+│   └── rules
+│       ├── architecture.md
+│       ├── backend-patterns.md
+│       ├── coding-standards.md
+│       ├── documentation.md
+│       ├── feature-guidelines.md
+│       ├── frontend-patterns.md
+│       ├── tech-stack.md
+│       └── ui-design-system.md
 ├── app
 │   ├── about
 │   │   └── page.tsx
@@ -230,6 +238,7 @@ techbox-made-by-arena
 │   ├── modules.ts
 │   └── utils.ts
 ├── prisma
+│   ├── dev.db
 │   ├── schema.prisma
 │   └── seed.ts
 ├── providers
@@ -264,6 +273,7 @@ techbox-made-by-arena
 │   │   └── KalamehWebFaNum-Thin.woff2
 │   └── logo.png
 ├── readme
+│   ├── continue.config.txt
 │   ├── transferdata.md
 │   └── transfertree.md
 ├── scripts
@@ -292,5 +302,6 @@ techbox-made-by-arena
 ├── pnpm-lock.yaml
 ├── pnpm-workspace.yaml
 ├── postcss.config.mjs
-└── tsconfig.json
+├── tsconfig.json
+└── tsconfig.tsbuildinfo
 ```

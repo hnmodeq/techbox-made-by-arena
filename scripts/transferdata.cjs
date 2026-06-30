@@ -7,9 +7,21 @@ const rootDir = process.cwd();
 const outputFile = path.join(rootDir, "readme", "transferdata.md");
 
 const targets = [
-"styles",
-
-
+"app",
+"components",
+"config",
+"constants",
+"data",
+"design",
+"features",
+"hooks",
+"lib",
+"prisma",
+"providers",
+"public",
+"stores",
+"tests",
+"types"
 ];
 
 const allowedExtensions = [

@@ -38,6 +38,7 @@
     "**/next.config.mjs": true,
     "**/.config" : true,
     "**/.continue" : true,
+    "**/.vercel" : true,
     
   },
   "prisma.pinToPrisma6": true,
