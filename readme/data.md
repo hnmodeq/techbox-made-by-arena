@@ -26,7 +26,7 @@ export default function About(){
  ["۱۴۰۵", "هونامیک ارتباط رستاک"],
  ].map(([k,v])=>(
  <div key={k as string} className="card p-5 text-center">
- <div className="tb-text-hero text-[var(--tb-primary)]">{k}</div>
+ <div className="tb-text-big-title text-[var(--tb-primary)]">{k}</div>
  <div className="tb-text-sm text-muted-foreground mt-1">{v}</div>
  </div>
  ))}
@@ -208,7 +208,7 @@ export default function AccountPage(){
  ["امتیاز","4.8"],
  ].map(([k,v])=>(
  <div key={k as string} className="card p-4 text-center">
- <div className="tb-text-hero text-[var(--tb-primary)]">{v}</div>
+ <div className="tb-text-big-title text-[var(--tb-primary)]">{v}</div>
  <div className="tb-text-sm text-muted-foreground mt-1">{k}</div>
  </div>
  ))}
@@ -390,7 +390,7 @@ export default function AdminPage() {
  return (
  <main className="min-h-dvh px-4 py-16" dir="rtl">
  <div className="mx-auto max-w-md card space-y-4 p-7 text-center">
- <h1 className="tb-text-hero ">ورود ادمین</h1>
+ <h1 className="tb-text-big-title ">ورود ادمین</h1>
  <p className="tb-text-md text-[var(--tb-fg-muted)]">برای مدیریت محتوا ابتدا وارد شوید.</p>
  <ButtonLink href="/admin/login" className="w-full">رفتن به صفحه ورود</ButtonLink>
  <div className="rounded-[var(--tb-radius-lg)] border border-[var(--tb-border)] bg-[var(--tb-bg-secondary)]/50 p-3 text-right tb-text-sm text-[var(--tb-fg-muted)]">
@@ -421,19 +421,19 @@ export default function AdminPage() {
  <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
  <div className="card p-4">
  <div className="tb-text-sm text-[var(--tb-fg-muted)]">ماژول قابل مدیریت</div>
- <div className="mt-1 tb-text-hero ">{modules.length.toLocaleString("fa-IR")}</div>
+ <div className="mt-1 tb-text-big-title ">{modules.length.toLocaleString("fa-IR")}</div>
  </div>
  <div className="card p-4">
  <div className="tb-text-sm text-[var(--tb-fg-muted)]">محتوای قابل مدیریت</div>
- <div className="mt-1 tb-text-hero ">{totals.count.toLocaleString("fa-IR")}</div>
+ <div className="mt-1 tb-text-big-title ">{totals.count.toLocaleString("fa-IR")}</div>
  </div>
  <div className="card p-4">
  <div className="tb-text-sm text-[var(--tb-fg-muted)]">بازدید منبع‌ها</div>
- <div className="mt-1 tb-text-hero ">{totals.views.toLocaleString("fa-IR")}</div>
+ <div className="mt-1 tb-text-big-title ">{totals.views.toLocaleString("fa-IR")}</div>
  </div>
  <div className="card p-4">
  <div className="tb-text-sm text-[var(--tb-fg-muted)]">پیش‌نویس لوکال</div>
- <div className="mt-1 tb-text-hero ">{drafts.reduce((s,d)=>s+d.count,0).toLocaleString("fa-IR")}</div>
+ <div className="mt-1 tb-text-big-title ">{drafts.reduce((s,d)=>s+d.count,0).toLocaleString("fa-IR")}</div>
  </div>
  </div>
 
@@ -653,7 +653,7 @@ function NewPostInner() {
  <ModuleBadge module={module}>{moduleMeta[module].titleFa}</ModuleBadge>
  {editSlug && <ModuleBadge module="warning">حالت ویرایش</ModuleBadge>}
  </div>
- <h1 className="tb-text-hero ">{editSlug ? "ویرایش مطلب" : "مطلب جدید"}</h1>
+ <h1 className="tb-text-big-title ">{editSlug ? "ویرایش مطلب" : "مطلب جدید"}</h1>
  <p className="mt-1 tb-text-sm text-[var(--tb-fg-muted)]">{user.name} • {user.role==="super_admin"?"مدیر کل":"ویراستار"}</p>
  </div>
  <ButtonLink href={`/admin/posts?module=${module}`} variant="ghost" size="xs">بازگشت به مدیریت محتوا</ButtonLink>
@@ -859,7 +859,7 @@ function AdminPostsInner() {
  <main className="mx-auto max-w-6xl px-4 py-10" dir="rtl">
  <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
  <div>
- <h1 className="tb-text-hero ">مدیریت محتوا</h1>
+ <h1 className="tb-text-big-title ">مدیریت محتوا</h1>
  <div className="mt-2 flex flex-wrap items-center gap-2">
  <ModuleBadge module={module}>{moduleMeta[module].titleFa}</ModuleBadge>
  <Badge variant="secondary">{items.length.toLocaleString("fa-IR")} آیتم منبع</Badge>
@@ -1078,7 +1078,7 @@ export default function RolesPage(){
  <main className="mx-auto max-w-6xl px-4 py-10" dir="rtl">
  <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
  <div>
- <h1 className="tb-text-hero ">مدیریت نقش‌ها – RBAC</h1>
+ <h1 className="tb-text-big-title ">مدیریت نقش‌ها – RBAC</h1>
  <p className="mt-1 tb-text-sm text-[var(--tb-fg-muted)]">مدیر کل می‌تواند نقش بسازد و دسترسی ماژول‌ها را تعیین کند. این نسخه فعلاً لوکال و آماده اتصال به Prisma Role table است.</p>
  </div>
  <div className="flex flex-wrap gap-2">
@@ -1714,7 +1714,7 @@ import { Button } from "@/components/ui/Button";
 export default function Consultation(){
  return (
  <main className="max-w-2xl mx-auto px-5 py-16" dir="rtl">
- <h1 className="tb-text-hero mb-4">درخواست مشاوره زیرساخت</h1>
+ <h1 className="tb-text-big-title mb-4">درخواست مشاوره زیرساخت</h1>
  <div className="card p-6 space-y-4">
  <input className="input" placeholder="نام سازمان" />
  <input className="input" placeholder="تلفن" />
@@ -2044,7 +2044,7 @@ function SearchInner(){
  const results = searchAcross(q);
  return (
  <main className="max-w-4xl mx-auto px-4 py-12" dir="rtl">
- <h1 className="tb-text-hero mb-2">جستجو</h1>
+ <h1 className="tb-text-big-title mb-2">جستجو</h1>
  <p className="tb-text-md text-muted-foreground mb-6">{q ? <>نتایج برای <b>«{q}»</b> – {results.length.toLocaleString("fa-IR")} مورد</> : "یک عبارت وارد کنید"}</p>
  <div className="grid gap-3 md:grid-cols-2">
  {results.map(r=> <ContentCard key={r.module+r.slug} item={r} />)}
@@ -2135,7 +2135,7 @@ export default function CheckoutPage(){
 
  return (
  <main className="max-w-5xl mx-auto px-4 py-12" dir="rtl">
- <h1 className="tb-text-hero mb-2 text-[var(--tb-shop)]">تسویه حساب – زرین‌پال</h1>
+ <h1 className="tb-text-big-title mb-2 text-[var(--tb-shop)]">تسویه حساب – زرین‌پال</h1>
  <p className="mb-6 tb-text-sm text-[var(--tb-fg-muted)]">
  درگاه: <b>ZarinPal</b> – {process.env.NEXT_PUBLIC_ZARIN_MERCHANT_ID ? "Live" : "Sandbox / Mock"} – برای فعال‌سازی واقعی، در .env بگذارید: <code>ZARIN_MERCHANT_ID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx</code>
  </p>
@@ -2562,7 +2562,7 @@ export default function JobPage({ params }: { params: Promise<{slug:string}> }){
  return (
  <main className="max-w-3xl mx-auto px-4 py-12" dir="rtl">
  <div className="tb-text-sm text-muted-foreground mb-2"><Link href="/workwithus" className="hover:text-foreground">فرصت‌های شغلی</Link> / {job.title}</div>
- <h1 className="tb-text-hero md:tb-text-hero ">{job.title}</h1>
+ <h1 className="tb-text-big-title md:tb-text-big-title ">{job.title}</h1>
  <div className="flex flex-wrap gap-2 mt-3 tb-text-sm">
  <Badge variant="brand">{job.type}</Badge>
  <Badge variant="secondary">{job.remote}</Badge>
@@ -4467,7 +4467,7 @@ export default function ModuleHeader({ module, title, description, eyebrow, coun
     <header className={cn("mb-6 flex flex-wrap items-end justify-between gap-3", className)}>
       <div>
         {eyebrow && <div className="mb-2 tb-text-sm text-[var(--tb-fg-muted)]">{eyebrow}</div>}
-        <h1 className={cn("tb-text-hero", meta.color)}>{title}</h1>
+        <h1 className={cn("tb-text-big-title", meta.color)}>{title}</h1>
         {description && <p className="mt-2 tb-text-md text-[var(--tb-fg-muted)]">{description}</p>}
       </div>
       {count && <div className="tb-text-sm text-[var(--tb-fg-muted)]">{count}</div>}
@@ -4505,7 +4505,7 @@ export default function PageHeader({ title, description, titleClassName, classNa
   return (
     <header className={cn("mb-6 flex flex-wrap items-end justify-between gap-3", className)} dir="rtl">
       <div>
-        <h1 className={cn("tb-text-hero", titleClassName)}>{title}</h1>
+        <h1 className={cn("tb-text-big-title", titleClassName)}>{title}</h1>
         {description && <p className="mt-2 tb-text-md text-[var(--tb-fg-muted)]">{description}</p>}
       </div>
       {children}
@@ -12454,10 +12454,10 @@ export type ShadowToken = keyof typeof shadows;
      • tb-text-sm   – small / meta text
      • tb-text-md   – body / default
      • tb-text-lg   – subheadings
-     • tb-text-hero – page & section headings (fluid)
+     • tb-text-big-title – page & section headings (fluid)
 
    Responsive variants are defined manually so class names like
-   `md:tb-text-hero` work without falling back to Tailwind text/font/leading.
+   `md:tb-text-big-title` work without falling back to Tailwind text/font/leading.
    ════════════════════════════════════════════════════════════════════════ */
 
 .tb-text-sm {
@@ -12478,7 +12478,7 @@ export type ShadowToken = keyof typeof shadows;
   line-height: 1.45;
 }
 
-.tb-text-hero {
+.tb-text-big-title {
   font-size: clamp(1.6rem, 3.5vw, 2.5rem);
   font-weight: 900;
   line-height: 1.2;
@@ -12489,35 +12489,35 @@ export type ShadowToken = keyof typeof shadows;
   .sm\:tb-text-sm { font-size: 0.8125rem; font-weight: 500; line-height: 1.6; }
   .sm\:tb-text-md { font-size: 0.9375rem; font-weight: 500; line-height: 1.8; }
   .sm\:tb-text-lg { font-size: 1.25rem; font-weight: 700; line-height: 1.45; }
-  .sm\:tb-text-hero { font-size: clamp(1.6rem, 3.5vw, 2.5rem); font-weight: 900; line-height: 1.2; letter-spacing: -0.01em; }
+  .sm\:tb-text-big-title { font-size: clamp(1.6rem, 3.5vw, 2.5rem); font-weight: 900; line-height: 1.2; letter-spacing: -0.01em; }
 }
 
 @media (min-width: 768px) {
   .md\:tb-text-sm { font-size: 0.8125rem; font-weight: 500; line-height: 1.6; }
   .md\:tb-text-md { font-size: 0.9375rem; font-weight: 500; line-height: 1.8; }
   .md\:tb-text-lg { font-size: 1.25rem; font-weight: 700; line-height: 1.45; }
-  .md\:tb-text-hero { font-size: clamp(1.6rem, 3.5vw, 2.5rem); font-weight: 900; line-height: 1.2; letter-spacing: -0.01em; }
+  .md\:tb-text-big-title { font-size: clamp(1.6rem, 3.5vw, 2.5rem); font-weight: 900; line-height: 1.2; letter-spacing: -0.01em; }
 }
 
 @media (min-width: 1024px) {
   .lg\:tb-text-sm { font-size: 0.8125rem; font-weight: 500; line-height: 1.6; }
   .lg\:tb-text-md { font-size: 0.9375rem; font-weight: 500; line-height: 1.8; }
   .lg\:tb-text-lg { font-size: 1.25rem; font-weight: 700; line-height: 1.45; }
-  .lg\:tb-text-hero { font-size: clamp(1.6rem, 3.5vw, 2.5rem); font-weight: 900; line-height: 1.2; letter-spacing: -0.01em; }
+  .lg\:tb-text-big-title { font-size: clamp(1.6rem, 3.5vw, 2.5rem); font-weight: 900; line-height: 1.2; letter-spacing: -0.01em; }
 }
 
 @media (min-width: 1280px) {
   .xl\:tb-text-sm { font-size: 0.8125rem; font-weight: 500; line-height: 1.6; }
   .xl\:tb-text-md { font-size: 0.9375rem; font-weight: 500; line-height: 1.8; }
   .xl\:tb-text-lg { font-size: 1.25rem; font-weight: 700; line-height: 1.45; }
-  .xl\:tb-text-hero { font-size: clamp(1.6rem, 3.5vw, 2.5rem); font-weight: 900; line-height: 1.2; letter-spacing: -0.01em; }
+  .xl\:tb-text-big-title { font-size: clamp(1.6rem, 3.5vw, 2.5rem); font-weight: 900; line-height: 1.2; letter-spacing: -0.01em; }
 }
 
 @media (min-width: 1536px) {
   .\32xl\:tb-text-sm { font-size: 0.8125rem; font-weight: 500; line-height: 1.6; }
   .\32xl\:tb-text-md { font-size: 0.9375rem; font-weight: 500; line-height: 1.8; }
   .\32xl\:tb-text-lg { font-size: 1.25rem; font-weight: 700; line-height: 1.45; }
-  .\32xl\:tb-text-hero { font-size: clamp(1.6rem, 3.5vw, 2.5rem); font-weight: 900; line-height: 1.2; letter-spacing: -0.01em; }
+  .\32xl\:tb-text-big-title { font-size: clamp(1.6rem, 3.5vw, 2.5rem); font-weight: 900; line-height: 1.2; letter-spacing: -0.01em; }
 }
 
 ```
@@ -13152,7 +13152,7 @@ export default function BentoCard({
  <div className="flex h-full flex-col gap-3">
  <div className="flex items-start justify-between gap-3">
  <div>
- <h3 className={`tb-text-lg md:tb-text-hero ${color}`}>
+ <h3 className={`tb-text-lg md:tb-text-big-title ${color}`}>
  <Link href={href} className="hover:opacity-90">{title}</Link>
  </h3>
  {description && (
@@ -13423,7 +13423,7 @@ export default function ContentDetail({ item }: { item: ContentItem }) {
  <span>{item.category}</span>
  </div>
 
-        <h1 className="tb-text-hero">{item.title}</h1>
+        <h1 className="tb-text-big-title">{item.title}</h1>
  <p className="text-[var(--tb-fg-muted)] mt-4 tb-text-md ">{item.excerpt}</p>
 
  <div className="flex flex-wrap items-center gap-3 mt-6 tb-text-sm">
@@ -13502,7 +13502,7 @@ export default function ModuleList({ module }: { module: ModuleSlug }) {
  <main className="mx-auto max-w-5xl px-5 py-14" dir="rtl">
  <div className="flex items-end justify-between mb-8">
  <div>
- <h1 className={`tb-text-hero ${meta.color}`}>{meta.titleFa}</h1>
+ <h1 className={`tb-text-big-title ${meta.color}`}>{meta.titleFa}</h1>
  <p className="tb-text-md text-muted-foreground mt-2">{items.length} مطلب • مرتب‌سازی تازه‌ترین</p>
  </div>
  <Link href="/" className="tb-text-sm text-muted-foreground hover:text-foreground">خانه →</Link>
@@ -13587,7 +13587,7 @@ export default function DownloadDetail({ item }: { item: ContentItem }){
  <div className="tb-text-sm text-muted-foreground mb-2">
  <Link href="/download" className="hover:text-foreground">دانلود</Link> / <span className="text-[var(--tb-download)]">{item.category}</span>
  </div>
- <h1 className="tb-text-hero md:tb-text-hero ">{item.title}</h1>
+ <h1 className="tb-text-big-title md:tb-text-big-title ">{item.title}</h1>
       <p className="text-muted-foreground mt-3">{item.excerpt}</p>
 
       {/* OS chooser */}
@@ -13979,7 +13979,7 @@ export default function HomeModulesSection() {
  <section className="px-4 md:px-10 lg:px-20 pb-24">
  <div className="mx-auto max-w-7xl">
  <div className="flex items-end justify-between mb-6 px-1">
- <h2 className="tb-text-hero ">آخرین‌ها از تکباکس</h2>
+ <h2 className="tb-text-big-title ">آخرین‌ها از تکباکس</h2>
  <span className="tb-text-sm text-muted-foreground">فید زنده ماژول‌ها</span>
  </div>
  <div className="grid grid-cols-1 gap-5 md:grid-cols-7 md:auto-rows-min">
@@ -15184,7 +15184,7 @@ export function NasSelector({
               </span>
               <span className="badge">RTL / فارسی / TailwindCSS 4</span>
             </div>
-            <h1 className="mt-4 tb-text-hero">NAS مناسب خود را در چند دقیقه پیدا کنید</h1>
+            <h1 className="mt-4 tb-text-big-title">NAS مناسب خود را در چند دقیقه پیدا کنید</h1>
             <p className="mt-3 max-w-2xl text-[14px] leading-8 text-[var(--tb-fg-muted)]">
               نیازها، ظرفیت، RAID، تعداد کاربران و سرویس‌ها را انتخاب کنید؛ ابزار به‌صورت زنده بهترین مدل‌ها را رتبه‌بندی و دلیل پیشنهاد را نمایش می‌دهد.
             </p>
@@ -15449,7 +15449,7 @@ export function NvrSelector({
             ماژول انتخاب ان‌وی‌آر
           </div>
         </div>
-        <h2 className="tb-text-hero mb-2">انتخابگر ان‌وی‌آر</h2>
+        <h2 className="tb-text-big-title mb-2">انتخابگر ان‌وی‌آر</h2>
         <p className="text-[var(--tb-fg-muted)] max-w-md mx-auto tb-text-md">
           تعداد دوربین، رزولوشن و مدت زمان ضبط را مشخص کنید تا بهترین مدل را پیدا کنید
         </p>
@@ -15985,7 +15985,7 @@ export default function RaidCalculator() {
                   <Icon name="server" className="h-3.5 w-3.5 text-[var(--tb-raid)]" />
                   ابزار محاسبه RAID
                 </div>
-                <h2 className="tb-text-hero">ماشین حساب RAID و SHR</h2>
+                <h2 className="tb-text-big-title">ماشین حساب RAID و SHR</h2>
                 <p className="mt-3 max-w-2xl tb-text-md text-[var(--tb-fg-muted)]">
                   ظرفیت قابل استفاده، افزونگی، فضای بلااستفاده و Hot Spare را برای RAIDهای کلاسیک و Synology Hybrid RAID با دیسک‌های هم‌اندازه یا ترکیبی محاسبه کنید.
                 </p>
@@ -16470,7 +16470,7 @@ export function ToolPageHeader({
           ))}
         </nav>
       )}
-      <h1 className="tb-text-hero" style={{ color: "var(--tb-fg-primary)" }}>{title}</h1>
+      <h1 className="tb-text-big-title" style={{ color: "var(--tb-fg-primary)" }}>{title}</h1>
       {subtitle && (
         <p className="mt-2 max-w-2xl tb-text-md text-[var(--tb-fg-muted)]">{subtitle}</p>
       )}
