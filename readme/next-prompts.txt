@@ -42,11 +42,15 @@ is hard text and this hard code is different for different modules. for example 
 -change the مشاهده همه مقالات to مشاهده همه
 -move the date from right side of the card to left side of the card
 -show more description in the card and put "..." end of it as a sign of there is more to read
--design a system that be able to estimate the reading time for real and not fake and let the number of estimate of reading be visible on these cards (also inside the /blog page on cards and also on articles itself
+-design a system that be able to estimate the reading time for real and not fake and let the number of estimate of reading be visible on these cards (also inside the /blog page on cards and also on articles itself)
 -write a job title under author name which get its data from the user profile (so we need a item in database as job-title and let users be able to set it from their /account as "مهارت شغلی")
 -make invisible the content type tag in this case "مقاله"
 -make the hovering effect more smooth (it's too fast and maybe it's too much)
 -create a tooltip (shadcn component) for the date when the mouse if hover it says "تاریخ ساخته شدن این پرسش" 
+
+
+Remaining:
+
 
 5-home page media row
 -remove the hovering effect from the "play" icon
