@@ -184,9 +184,6 @@ change the sentence " برای مشاهده رویدادهای بیشتر ..." t
 -make the inside of پشتیبانی برخط to be something like پشتیبانی هوشمند (which is the tab icon and a sentence. "پشتیبانی برخط اینجاست تا شما را راهنمایی کند")
 -change the پشتیبانی هوشمند sentence inside from سوال فنی یا محصول خود را بپرسید. چت با با مدل AI پاسخ میدهد  to "پشتیبانی هوشمند اینجاست تا شما را راهنمایی کند
 
-Done Until Here.
-
-
 17-news sidebar
 -let unreaded news have a red dot on their cards. and it needs to get invisible when the user seen the cards (real data not a fake function, we have to store these datas in database for at least 24 hours)
 -make news cards in the news sidebar be likable and commentable. and comments gonna be like a waterfall below the card with a "مشاهده بیشتر" if they click on it. this button gonna expand all comments and have a scroll handle if needed.
@@ -201,7 +198,7 @@ Done Until Here.
 
 
 
-
+Done Until Here.
 
 
 15-account page
