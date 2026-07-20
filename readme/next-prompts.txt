@@ -196,9 +196,6 @@ change the sentence " برای مشاهده رویدادهای بیشتر ..." t
 -remove the x button to close the news sidebar since we have the button in the top bar and it gonna make it open and close both.
 
 
-
-
-
 15-account page
 -change فعالیت نویسنده to فعالیت محتوایی
 -change فعالیت کاربری to فعالیت کاربر
@@ -242,16 +239,14 @@ Done Until Here.
 
 
 19- news page (/news)
--remove the force news section (we don't need it anymore, already have been mention it in the previous items)
--remove the content subject tag  on cards (example: زیرساخت - بازار فناوری)
--remove the text با منبع و ساعت انتشار
--change the date system to "how many years/months/days/hours/minutes ago"
--add a tooltip for the date (shadcn component) to announce the publish date as we have it (for example: 1405 tir 31) (so we gonna have a date which saying for example 5 days ago and when we hover on it we gonna have the absolute date like "1405 tir 31" etc)
+-remove the اخبار
+-remove the text بایگانی کامل اخبار
 -remove the cloak icon before the date
--move the date from right to left
+-thumbnail and details getting overlapp in a card here. fix it.
 -since we not gonna have news slugs (no one can enter to a card) let the full description be visible in this page on cards
--make views icon invisible (not totally removing it) just invisible
--let cards be able to get like and comment from this page (not the slug page inside a card), so we gonna have a list here and no one can enter to a card. everyone needs to put check news/likes/comments in here and news bar (news bar as our main news module and /news as an archive if users want to have access to news before 24 hours)
+-disable the hover effect
+-remove the مشاهده بیشتر (0) from cards in this page
+-let cards be able to get like and comment from this page (not the slug page inside a card), so we gonna have a list here and no one can enter to a card. everyone needs to put check news/likes/comments in here and news bar (news bar as our main news module and /news as an archive if users want to have access to news before 24 hours) note: we already have the like and comment directly on cards in our news bar. we just need to have them on cards in this page (/news)
 -make sure we have pagination here (shadcn component)
 
 20-media page (/media)
