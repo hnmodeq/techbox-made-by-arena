@@ -281,6 +281,29 @@ change the sentence " برای مشاهده رویدادهای بیشتر ..." t
 
 Done Until Here.
 
+
+
+24-RAID Calculator
+-remove the header completely including all of its items inside
+-handlers doesn't work correctly
+-this tool needs to be more simple / clean and understandable
+-make sure the product that get suggest here be real and get choose from exist products in our shop with a redirect link to the product slug page
+-remove the tag "ابزار محاسبه RAID"
+-change the بازنشانی نمونه 8*4 ترابایت to تنظیمات پیش فرض
+-make the title of this tool to: 
+-پیکربندی ذخیره‌ساز
+(and please change it in the main sidebar too) 
+
+
+
+let's have only 1 RAID Calculator. (i marked the second one. please remove it)
+and let transform our dropdown menu to buttons! but short title for buttons. (transfer rest of the details below the progress bar just like other informations)
+and increase the progress bar height.
+so users gonna see 1 progress bar > they can change the RAID setup by clicking on different buttons > they gonna check all informations including تحمل خرابی and rest of informations below the prgoress bar in the information area > and we gonna have a animated strong height bar.
+
+
+
+
 22-NAS Selector page
 -remove the breadcrumb from this page (we already have a breadcrumb in our top bar)
 -remove the header completely including items inside it
@@ -300,17 +323,6 @@ Done Until Here.
 -the suggested products at the end needs to get remove since they are fake products (i think) and we not gonna sell any nvr in our shop. so just remove the suggestions here
 -make the title of this tool to:
 انتخابگر دستگاه ضبط دوربین‌های مدار بسته 
-(and please change it in the main sidebar too) 
-
-24-RAID Calculator
--remove the header completely including all of its items inside
--handlers doesn't work correctly
--this tool needs to be more simple / clean and understandable
--make sure the product that get suggest here be real and get choose from exist products in our shop with a redirect link to the product slug page
--remove the tag "ابزار محاسبه RAID"
--change the بازنشانی نمونه 8*4 ترابایت to تنظیمات پیش فرض
--make the title of this tool to: 
--پیکربندی ذخیره‌ساز
 (and please change it in the main sidebar too) 
 
 25-Subnet Calculator
