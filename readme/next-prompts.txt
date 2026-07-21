@@ -236,6 +236,10 @@ change the sentence " برای مشاهده رویدادهای بیشتر ..." t
 -move the date from right to left and move it from bottom to top of the social icons( so we gonna have 2 rows, first right including the author avatar and name in the right side and the date on the left side and second row author job title in the right side and social icons in the left side)
 
 
+let's have a consultation button in sidebar for behroz and mostafa
+fix role system!
+and permission system!
+
 
 19- news page (/news)
 -remove the اخبار
