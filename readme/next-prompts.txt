@@ -283,9 +283,6 @@ and permission system!
 -make the TB-1002 TB-1001 which idk what it is invisible
 -make invisible the filtering for now
 
-Done Until Here.
-
-
 
 24-RAID Calculator
 -remove the header completely including all of its items inside
@@ -299,13 +296,10 @@ Done Until Here.
 (and please change it in the main sidebar too) 
 
 
-
 let's have only 1 RAID Calculator. (i marked the second one. please remove it)
 and let transform our dropdown menu to buttons! but short title for buttons. (transfer rest of the details below the progress bar just like other informations)
 and increase the progress bar height.
 so users gonna see 1 progress bar > they can change the RAID setup by clicking on different buttons > they gonna check all informations including تحمل خرابی and rest of informations below the prgoress bar in the information area > and we gonna have a animated strong height bar.
-
-
 
 
 22-NAS Selector page
@@ -318,6 +312,7 @@ so users gonna see 1 progress bar > they can change the RAID setup by clicking o
 -make the title of this tool to:
 انتخابگر ذخیره‌ساز 
 (and please change it in the main sidebar too)
+
 
 23-NVR Selector
 -remove the header completely with all of its items inside
@@ -353,17 +348,9 @@ so users gonna see 1 progress bar > they can change the RAID setup by clicking o
 -the grid gonna be like this: each card have 2 rows. topic creator avatar take both rows height. the topic title will be on the first row after avatar. the topic status ( باز حل شده) gonna be on the first row after title. the date gonna be in the first row left side.
 the topic creator name with موضوع ایجاد شده توسط gonna be in second row right side. the submitted message counter will be on row 2 left side.
 
-27-Reviews page (/reviews)
--remove تستهای آزمایشگاهی زیرساخت، بنچمارک دقیق و ارزیابی معماری
--remove the 13 بررسی
--remove the content subject tags (شبکه ذخیره سازی سرور) on the card thumbnail and on the card itself) (we have two of it on each card.
--remove the number beside the rating stars (stars alone are enough). keep the number how many people submitted rating.
--change the نویسنده نقد to job title of the author (real data from their profile fields, no fake or hard-codes)
--make sure we have shadcn style pagination in this page
--move the rating stars from top left to top right
--move the date from top right to  top left
--make a tooltip for the date with shadcn component: "تاریخ انتشار"
--make the tooltip for stars with shadcn compoennts: "امتیاز کاربران"
+
+
+
 
 28-Timeline Page (/timeline)
 -the like counter doesn't work well. (when we refresh the page the counter get reset) (the icon works well since it is red fill if i liked it before)
@@ -375,17 +362,10 @@ the topic creator name with موضوع ایجاد شده توسط gonna be in se
 -add the same sentence that already have in homepage timeline row as:
 برای مشاهده رویدادهای تکنولوژی به چپ و راست حرکت کنید.
 
-28-Download Page (/download)
--we have 3 filter with good items but idk why it shows the word "all". it should not be like this. it should show the first item of the dropdown menu of that filter. for example:  / همه نوع ها /همه سیستم عامل‌ها / همه برندها
--the filters dropdown position is not correct. it needs to go down
--change the جستوجو فایل... to دنبال چه فایلی میگردی؟
--remove social icons
--remove 3 فایل
--remove نام فایل و توضیحات
--put download counter for each card (use the design of this feature in the homepage download row download cards)
--put the file type for each card  (use the design of this feature in the homepage download row download cards) 
--put the size of the file  (use the design of this feature in the homepage download row download cards) 
--disable cards be clickable and users go inside the file slugs (so people gonna download files from this page directly from a "دانلود" button on each card
+
+
+Done Until Here.
+
 
 29-about us
 -remove the 3 cards above (8 ماژول تیم تخصصی 1405)
@@ -429,3 +409,86 @@ admin should be able to customize the about page. admin should be able edit desc
 
 
 
+
+
+
+--------------------------------------------------
+
+
+
+
+
+# TASK: Comprehensive Bug Fix, Security Hardening, Performance Optimization & Feature Upgrade for TechBox (Next.js 16)
+
+You are tasked with fixing all identified issues, security vulnerabilities, bundle bloat, SEO defects, and missing features in the `hnmodeq/techbox` codebase (Next.js 16 App Router, TypeScript, Prisma, Tailwind CSS).
+
+Please execute the following step-by-step resolution plan cleanly and rigorously:
+
+---
+
+### 1. CRITICAL BUGS & UI BLANKS
+
+1. **Fix Client Auth Desynchronization (`lib/auth.ts` & `lib/auth-server.ts`)**:
+   - Replace persistent `localStorage.setItem('tb_auth_user', ...)` with server-validated session queries via `useSWR` or React Query hitting `/api/account/me`.
+   - Prevent situations where expired HTTP-only cookies (`tb_session`) leave stale logged-in states in `localStorage`.
+
+---
+
+### 2. SECURITY HARDENING & DATA LEAK PREVENTION
+
+1. **Eliminate Dev Fallback Auth Secret (`lib/auth-server.ts`)**:
+   - Remove the hardcoded `dev-secret-please-change-32char!` fallback string.
+   - Throw a fatal startup error if `AUTH_SECRET` environment variable is not defined or is less than 32 characters in length across all environments.
+
+2. **Protect Confidential Resume Blob Files (`app/api/admin/jobs/applications/route.ts`)**:
+   - Job applicant PDF resumes are uploaded directly as public Vercel Blob URLs (`*.public.blob.vercel-storage.com`), exposing personal contact details.
+   - Refactor job application uploads to serve resumes through an authenticated API endpoint (`/api/admin/jobs/applications/[id]/resume`) that checks for admin authorization or secure signed tokens before streaming the file.
+
+3. **Enforce Rate Limiting in Production (`lib/rate-limit.ts`)**:
+   - Add a critical log warning in production builds if `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` are missing, because serverless in-memory `Map` instances fail to protect against distributed brute-force attacks across Vercel function invocations.
+
+---
+
+### 3. PERFORMANCE & BUNDLE SIZE OPTIMIZATION
+
+1. **Deduplicate Motion Animation Libraries (`package.json`)**:
+   - The project installs both `framer-motion` (^12.42.2) and `motion` (^12.42.2), causing duplicate JS bundle bloat (~150KB).
+   - Consolidate all animation imports across the project to `motion/react` or `framer-motion`.
+   - Remove `framer-motion` from `package.json` dependencies and clean up unused imports.
+
+2. **Lazy Load Heavy 3D & Animation Libraries (`components/effects/*`)**:
+   - Three.js (`three`) and GSAP (`gsap`) are currently imported synchronously in visual effect components.
+   - Wrap 3D canvas and particle effect components with `next/dynamic` (`{ ssr: false }`) so Three.js (~600KB) is split into a lazy chunk and loaded only when visible in the viewport.
+
+---
+
+### 4. SEO & ACCESSIBILITY
+
+1. **Dynamic Canonical URLs (`lib/seo.ts`)**:
+   - Update `siteUrl()` to dynamically handle incoming request headers or enforce `NEXT_PUBLIC_SITE_URL` to avoid hardcoded fallback canonicals pointing to the Vercel staging URL (`hnmodeq-techbox.vercel.app`) when custom domains are used.
+2. **Meta & Structured Data**:
+   - Ensure all public pages (`/blog/[slug]`, `/news/[slug]`, `/tools`, `/shop`) render valid OpenGraph images, Twitter cards, and `Article` / `WebSite` JSON-LD schemas.
+
+---
+
+### 5. UX & RTL PERSIAN MOBILE IMPROVEMENTS
+
+1. **Add Mobile Bottom Navigation Bar (`components/layout/LayoutShell.tsx`)**:
+   - Implement a fixed bottom navigation bar (`sm:hidden fixed bottom-0 left-0 right-0 z-50 bg-background/95 backdrop-blur border-t`) with touch-friendly icons (Home, News, Tools, Shop, Account) for mobile users in Persian RTL layout.
+
+---
+
+### 6. NEW FEATURE: INTERACTIVE IT TOOLS HUB
+
+1. **Expand `/tools` Section (`app/tools/page.tsx`)**:
+   - Build client-side interactive calculators for IT professionals:
+     - **Subnet & CIDR Calculator**: IP range, netmask, usable host count, and broadcast address.
+     - **RAID Storage Calculator**: Usable capacity, parity loss, and fault tolerance for RAID 0, 1, 5, 6, and 10.
+
+---
+
+### VERIFICATION & QUALITY CHECKS
+
+1. Run `pnpm run typecheck` or `tsc --noEmit` to verify zero TypeScript errors.
+2. Run `pnpm run lint` to ensure no ESLint warnings or missing dependency arrays in hooks.
+3. Execute `pnpm run test` or `pnpm run test:smoke` to verify all end-to-end and unit tests pass cleanly.
